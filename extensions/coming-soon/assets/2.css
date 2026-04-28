@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Montserrat:wght@400;700;800&display=swap');
+
+.template-two-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  background-size: cover;
+  background-position: center;
+}
+.home-content {
+  position: relative;
+  z-index: 2;
+  width: 100%; height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 40px; text-align: center;
+}
+.home-logo img { height: 110px; width: auto; object-fit: contain; margin-bottom: 3rem; }
+
+.template-two-container h1 { 
+  font-family: 'Monoton', cursive;
+  font-size: 8rem; 
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 2rem 0;
+  color: #fff;
+  letter-spacing: 0.5rem;
+}
+
+.home-content__clock { 
+  display: flex; 
+  gap: 3rem; 
+  margin: 3rem 0; 
+}
+.time { 
+  font-size: 5rem; 
+  font-weight: 400; 
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.time span { 
+  font-size: 1.2rem; 
+  color: rgba(255, 255, 255, 0.76);
+  margin-top: 0.5rem;
+}
+
+.cs-description {
+  max-width: 800px;
+  margin: 2rem auto 3rem;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+}
+
+.subscribe-form { 
+  max-width: 500px; 
+  width: 100%; 
+  margin: 3rem auto;
+  position: relative;
+}
+.subscribe-form input { 
+  width: 100%;
+  height: 5rem;
+  padding: 1rem 150px 1rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+}
+.subscribe-form button { 
+  position: absolute;
+  top: 0; right: 0;
+  height: 100%;
+  padding: 0 30px;
+  background: #1F0528;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.home-social { 
+  list-style: none;
+  display: flex;
+  gap: 3rem;
+  padding: 0;
+  margin: 6rem 0 0;
+}
+.home-social li a { 
+  color: #fff; 
+  font-size: 28px; 
+  transition: 0.3s; 
+  text-decoration: none; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-social li a:hover { color: #1F0528; }
+
+.home-content__line {
+  display: block;
+  width: 1px;
+  height: 12rem;
+  background-color: #1F0528;
+  position: absolute;
+  right: 84px;
+  bottom: 0;
+}
+
+@media (max-width: 1200px) {
+  .template-two-container h1 { font-size: 6rem; }
+  .time { font-size: 4rem; }
+}
+@media (max-width: 800px) {
+  .template-two-container h1 { font-size: 4.5rem; }
+  .home-content__clock { gap: 2rem; }
+  .time { font-size: 3rem; }
+  .subscribe-form input { padding-right: 20px; }
+  .subscribe-form button { position: static; width: 100%; margin-top: 1rem; }
+  .home-content__line { display: none; }
+}

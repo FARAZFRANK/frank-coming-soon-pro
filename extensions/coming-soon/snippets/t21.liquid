@@ -1,0 +1,36 @@
+<div class="template-twenty-one-container csmm-main-bg">
+  <div class="t21-bg" ></div>
+  <main class="t21-content">
+    <div class="t21-logo"><a href="{{ shop.url }}"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy"></a></div>
+
+    <h1>{% if s.title == nil %}Sustainable Staples{% else %}{{ s.title }}{% endif %}</h1>
+    <p>{% if s.description == nil %}Our next collection is almost ready for you. Sign up for early access.{% else %}{{ s.description }}{% endif %}</p>{% if s.countdownDate != blank %}<div style="margin-bottom: 3rem;">{% if s.countdownDate != blank %}<h3 class="t21-countdown-label" style="font-size: 1.3rem; color: #968484; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem;">{% if s.countdownTitle == nil %}Launching In...{% else %}{{ s.countdownTitle }}{% endif %}</h3>{% endif %}<div class="t21-countdown">
+          <div class="t21-countdown-item">
+            <span class="number" id="days">00</span>
+            <span class="label">Days</span>
+          </div>
+          <div class="t21-countdown-item">
+            <span class="number" id="hours">00</span>
+            <span class="label">Hours</span>
+          </div>
+          <div class="t21-countdown-item">
+            <span class="number" id="minutes">00</span>
+            <span class="label">Mins</span>
+          </div>
+          <div class="t21-countdown-item">
+            <span class="number" id="seconds">00</span>
+            <span class="label">Secs</span>
+          </div>
+        </div>
+      </div>{% endif %}<div class="t21-subscription">
+      <p class="t21-form-msg">Be the first to know.</p>
+      <form class="t21-form">
+        <input type="email" placeholder="Your email address" class="t21-input" required>
+        <button type="submit" class="t21-submit">Subscribe</button>
+      </form>
+    </div>
+
+    <ul class="t21-social">{% render 'cs-social', s: s %}</ul>
+  </main>
+</div>
+

@@ -1,0 +1,27 @@
+<div class="template-seventeen-container csmm-main-bg">
+
+  <!-- Background Video (Colorful Abstract) -->
+  <video class="t17-video" autoplay muted loop playsinline width="1920" height="1080">
+    <source src="{% if s.videoUrl != blank %}{{ s.videoUrl }}{% else %}https://awplife.com/wp-content/uploads/2026/04/123.mp4{% endif %}" type="video/mp4">
+  </video>
+
+  <!-- Light overlay -->
+  <div class="t17-overlay"></div>
+
+  <!-- TOP CENTER: Logo then Social (VERTICAL stack) -->
+  <div class="t17-topcenter"><div class="t17-logo"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy"></div><ul class="t17-social">{% render 'cs-social', s: s %}</ul>
+  </div>
+
+  <!-- CENTER: Countdown + Solid White Title -->
+  <div class="t17-center">
+    <div class="t17-clock">
+      <div class="time" id="days">00 <span class="t17-label">D</span></div>
+      <div class="time" id="hours">00 <span class="t17-label">H</span></div>
+      <div class="time" id="minutes">00 <span class="t17-label">M</span></div>
+      <div class="time" id="seconds">00 <span class="t17-label">S</span></div>
+    </div>
+    <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+  </div>
+
+</div>
+

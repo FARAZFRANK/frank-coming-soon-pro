@@ -1,0 +1,39 @@
+<div class="template-fourteen-container csmm-main-bg">
+
+  <!-- Background Video -->
+  <video class="t14-video" autoplay muted loop playsinline width="1920" height="1080">
+    <source src="{% if s.videoUrl != blank %}{{ s.videoUrl }}{% else %}https://cdn.pixabay.com/video/2022/02/13/107573-678540733_large.mp4{% endif %}" type="video/mp4">
+  </video>
+
+  <!-- Dark overlay -->
+  <div class="t14-overlay"></div>
+
+  <!-- Dark center grid panel -->
+  <div class="t14-grid"></div>
+
+  <!-- Main Content -->
+  <div class="t14-content"><div class="t14-logo"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy"></div><!-- Countdown -->
+    <div class="t14-clock">
+      <div class="time days" id="days">00 <span class="t14-label">D</span></div>
+      <div class="time hours" id="hours">00 <span class="t14-label">H</span></div>
+      <div class="time minutes" id="minutes">00 <span class="t14-label">M</span></div>
+      <div class="time seconds" id="seconds">00 <span class="t14-label">S</span></div>
+    </div>
+
+    <!-- Gold Stroke Title -->
+    <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+
+    <!-- Subscribe Form -->
+    <div class="t14-subscribe">
+      <form id="mc-form">
+        <input type="email" placeholder="Email Address">
+        <input type="submit" value="Notify Me">
+      </form>
+    </div>
+
+    <!-- Social Icons -->
+    <ul class="t14-social">{% render 'cs-social', s: s %}</ul>
+
+  </div>
+</div>
+

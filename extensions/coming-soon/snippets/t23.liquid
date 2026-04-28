@@ -1,0 +1,41 @@
+<div class="template-twenty-three-container csmm-main-bg">
+  <main class="t23-split-layout">{%- assign t23_bg = 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop' -%}{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != 'null' %}{% assign t23_bg = s.bgImageUrl %}{% endif %}<div class="t23-image-side" style="background-image: url('{{ t23_bg }}'); background-size: cover; background-position: center;" >&nbsp;</div>
+
+    <div class="t23-content-side">
+      <div class="t23-inner">
+        <div class="t23-logo"><a href="{{ shop.url }}"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="40" loading="lazy" style="max-height: 40px; margin-bottom: 2rem;"></a></div>
+
+        <h1 class="t23-title">{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+        <p class="t23-description">{% if s.description == nil %}Something big is coming! Please sign up for our newsletter to receive exclusive updates.{% else %}{{ s.description }}{% endif %}</p>{% if s.countdownDate != blank %}<div class="t23-countdown" id="countdown">
+            <div class="t23-countdown-box">
+              <div class="t23-countdown-number" id="days">00</div>
+              <div class="t23-countdown-label">Days</div>
+            </div>
+            <div class="t23-countdown-box">
+              <div class="t23-countdown-number" id="hours">00</div>
+              <div class="t23-countdown-label">Hours</div>
+            </div>
+            <div class="t23-countdown-box">
+              <div class="t23-countdown-number" id="minutes">00</div>
+              <div class="t23-countdown-label">Mins</div>
+            </div>
+            <div class="t23-countdown-box">
+              <div class="t23-countdown-number" id="seconds">00</div>
+              <div class="t23-countdown-label">Secs</div>
+            </div>
+          </div>{% endif %}<div class="t23-subscription">
+          <p class="t23-form-prompt">Get project updates and launch news.</p>
+          <form class="t23-form">
+            <input type="email" placeholder="Your email address" class="t23-input" required>
+            <button type="submit" class="t23-submit">Keep Me Posted</button>
+          </form>
+        </div>
+
+        <div class="t23-footer">
+          <ul class="t23-social">{% render 'cs-social', s: s %}</ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+

@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;700&display=swap');
+
+.template-twenty-two-container {
+  font-family: 'Poppins', sans-serif;
+  background-color: #4A148C;
+  background-image: linear-gradient(45deg, #4A148C 0%, #880E4F 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+#confetti-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.t22-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 2rem;
+  padding: 2.5rem;
+  text-align: center;
+  animation: t22-popIn 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  opacity: 0;
+}
+
+@keyframes t22-popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.t22-subtitle {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #F06292;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.t22-logo img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.t22-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin: 1.5rem 0;
+  color: #ffffff !important;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+
+.t22-description {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2.5rem;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.t22-countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.t22-countdown-box {
+  background: rgba(0,0,0,0.2);
+  border-radius: 0.75rem;
+  padding: 1rem 0.5rem;
+}
+
+.t22-countdown-number {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.t22-countdown-label {
+  color: #E1BEE7;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.t22-subscription {
+  max-width: 450px;
+  margin: 0 auto 2.5rem;
+}
+
+.t22-form-prompt {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+
+.t22-form {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.t22-input {
+  flex: 1;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 1rem 2rem;
+  outline: none;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.t22-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.t22-input:focus {
+  border-color: #ffffff;
+  background: rgba(0,0,0,0.4);
+}
+
+.t22-submit {
+  background-image: linear-gradient(90deg, #F06292 0%, #FFA726 50%, #FFD600 100%);
+  color: #311B92;
+  border: none;
+  border-radius: 9999px;
+  padding: 1rem 2.5rem;
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.t22-submit:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+
+.t22-social {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.t22-social a {
+  color: #FFFFFF;
+  font-size: 1.75rem;
+  transition: all 0.3s ease;
+  display: flex;
+}
+
+
+.t22-social a:hover {
+  color: #FFD600;
+  transform: scale(1.2);
+}
+
+@media (max-width: 500px) {
+  .t22-form { flex-direction: column; }
+  .t22-countdown { gap: 0.5rem; }
+  .t22-card { padding: 1.5rem; }
+}

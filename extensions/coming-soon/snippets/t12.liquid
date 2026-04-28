@@ -1,0 +1,54 @@
+{{ '12.css' | asset_url | stylesheet_tag }}
+
+<div class="template-12-container" style="{% if s.bgImageUrl != blank %}background-image: url('{{ s.bgImageUrl }}'); background-color: transparent;{% else %}background-color: #fbfaf8;{% endif %}">
+  <div class="t12-overlay"></div>
+  
+  <div class="t12-content">
+    <div class="t12-logo" style="{% if s.logoUrl == blank %}display: none;{% endif %}">
+      {% if s.logoUrl != blank %}
+        <img src="{{ s.logoUrl }}" alt="Logo" width="150" height="150">
+      {% endif %}
+    </div>
+
+    {% if s.countdownDate != blank %}
+      <div class="t12-subtitle">{% if s.countdownTitle == nil %}Launching In...{% else %}{{ s.countdownTitle }}{% endif %}</div>
+    {% endif %}
+
+    <h1 class="t12-title">{% if s.title == nil %}Our new store is opening soon{% else %}{{ s.title }}{% endif %}</h1>
+
+    <p class="t12-desc">{% if s.description == nil %}Be the first to know when we launch and get exclusive early access to our collections.{% else %}{{ s.description }}{% endif %}</p>
+
+    <div class="t12-timer" id="cs-timer">
+      <div class="t12-time-box">
+        <span class="t12-num" id="days">00</span>
+        <span class="t12-label">Days</span>
+      </div>
+      <div class="t12-time-box">
+        <span class="t12-num" id="hours">00</span>
+        <span class="t12-label">Hours</span>
+      </div>
+      <div class="t12-time-box">
+        <span class="t12-num" id="minutes">00</span>
+        <span class="t12-label">Minutes</span>
+      </div>
+      <div class="t12-time-box">
+        <span class="t12-num" id="seconds">00</span>
+        <span class="t12-label">Seconds</span>
+      </div>
+    </div>
+
+    <div class="t12-form-container">
+        {% if s.showSubscriberForm %}
+        <form class="t12-form mc-form">
+          <input type="email" name="email" placeholder="Email address" required>
+          <input type="hidden" name="shop" value="{{ shop.permanent_domain }}">
+          <button type="submit">Notify me</button>
+        </form>
+        {% endif %}
+    </div>
+
+    <ul class="t12-social">
+      {% render 'cs-social', s: s %}
+    </ul>
+  </div>
+</div>

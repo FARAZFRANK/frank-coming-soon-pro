@@ -1,0 +1,36 @@
+<div class="template-eight-container csmm-main-bg"><div class="home-content__text">
+    <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+    <p>{% if s.description == nil %}We are currently working hard to create a new and exciting experience for you.{% else %}{{ s.description }}{% endif %}</p>
+  </div>
+    
+  <div class="home-content__counter">
+    <div class="home-content__clock">
+      <div class="time">
+        <span class="time-val" id="days">00</span>
+        <span class="time-label">Days</span>
+      </div>
+      <div class="time">
+        <span class="time-val" id="hours">00</span>
+        <span class="time-label">Hours</span>
+      </div>
+      <div class="time">
+        <span class="time-val" id="minutes">00</span>
+        <span class="time-label">Minutes</span>
+      </div>
+      <div class="time">
+        <span class="time-val" id="seconds">00</span>
+        <span class="time-label">Seconds</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-content__subscribe">
+    <form id="mc-form">
+      <input type="email" placeholder="Email Address">
+      <input type="submit" value="Join">
+    </form>
+  </div>
+
+  <ul class="home-social">{% render 'cs-social', s: s %}</ul>
+</div>
+

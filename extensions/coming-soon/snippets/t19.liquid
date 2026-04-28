@@ -1,0 +1,182 @@
+<div class="template-nineteen-container csmm-main-bg">
+  <canvas id="t19-canvas"></canvas>
+  
+  <div id="t19-game-over">
+    GAME OVER<br><br>
+    SCORE: <span id="t19-final-score">0</span><br><br>
+    PRESS 'ENTER' TO RESTART
+  </div>
+
+  <div class="t19-overlay-content">
+    <div class="t19-topbar">
+      <div class="score-box">SCORE: <span id="t19-current-score">0</span></div>
+      <ul class="t19-social">
+        {% render 'cs-social', s: s %}
+      </ul>
+    </div>
+    
+    <div class="t19-center">
+      <div class="t19-clock">
+        <div class="time">
+          <span id="days">00</span><span class="label">DAYS</span>
+        </div>
+        <div class="time">
+          <span id="hours">00</span><span class="label">HOURS</span>
+        </div>
+        <div class="time">
+          <span id="minutes">00</span><span class="label">MINS</span>
+        </div>
+        <div class="time">
+          <span id="seconds">00</span><span class="label">SECS</span>
+        </div>
+      </div>
+      <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+    </div>
+
+    <div class="t19-spacer"></div>
+  </div>
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      const canvas = document.getElementById('t19-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const gameOverDiv = document.getElementById('t19-game-over');
+      const finalScoreSpan = document.getElementById('t19-final-score');
+      const currentScoreSpan = document.getElementById('t19-current-score');
+      
+      let w, h;
+      const resize = () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; };
+      window.addEventListener('resize', resize);
+      resize();
+
+      let gameActive = true;
+      let score = 0;
+      let stars = Array(100).fill().map(() => ({ x: Math.random()*w, y: Math.random()*h, s: Math.random()*2, o: Math.random() }));
+      let enemies = [];
+      let bullets = [];
+      let lastEnemy = 0;
+      let lastBullet = 0;
+      let fireInterval = 300;
+      const alienColors = ['#FF4081', '#7C4DFF', '#00BCD4', '#76FF03', '#FFC107', '#FF5722'];
+      
+      const player = { x: w/2, y: h-100, w: 60, h: 40 };
+      const keys = {};
+      window.addEventListener('keydown', e => { 
+        keys[e.key] = true; 
+        if (e.key === ' ' && gameActive) bullets.push({ x: player.x + 28, y: player.y, w: 4, h: 15 });
+        if (e.key === 'Enter' && !gameActive) restart();
+      });
+      window.addEventListener('keyup', e => keys[e.key] = false);
+
+      function restart() {
+        score = 0; enemies = []; bullets = []; gameActive = true;
+        gameOverDiv.style.display = 'none';
+        currentScoreSpan.innerText = '0';
+      }
+
+      function loop() {
+        if (!gameActive) { requestAnimationFrame(loop); return; }
+        
+        ctx.clearRect(0,0,w,h);
+        
+        // Stars
+        ctx.fillStyle = '#fff';
+        stars.forEach(s => {
+          s.y += 0.5; if (s.y > h) s.y = 0;
+          ctx.globalAlpha = Math.sin(Date.now()*0.005 + s.x)*0.5 + 0.5;
+          ctx.fillRect(s.x, s.y, s.s, s.s);
+        });
+        ctx.globalAlpha = 1;
+
+        // Player Movement
+        if (keys.ArrowLeft && player.x > 0) player.x -= 8;
+        if (keys.ArrowRight && player.x < w-60) player.x += 8;
+
+        // Auto-fire
+        if (Date.now() - lastBullet > fireInterval) {
+          bullets.push({ x: player.x + 28, y: player.y, w: 4, h: 15 });
+          lastBullet = Date.now();
+        }
+
+        // Draw Player (Tanker)
+        const centerX = player.x + 30;
+        // Body (Green)
+        ctx.fillStyle = '#4CAF50';
+        ctx.fillRect(player.x, player.y + 12, 60, 20); 
+        // Turret (Darker Green)
+        ctx.fillStyle = '#2E7D32';
+        ctx.beginPath();
+        ctx.arc(centerX, player.y + 16, 15, 0, Math.PI * 2);
+        ctx.fill();
+        // Cannon (Darker Green)
+        const recoil = Math.max(0, 6 - ((Date.now() - lastBullet) / 40));
+        ctx.fillRect(player.x + 26, player.y - 6 + recoil, 8, 24);
+        // Wheels (Brown)
+        ctx.fillStyle = '#5D4037';
+        ctx.beginPath();
+        ctx.arc(player.x + 12, player.y + 34, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(player.x + 48, player.y + 34, 8, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Bullets
+        ctx.fillStyle = '#00ff00';
+        bullets.forEach((b, i) => {
+          b.y -= 4.5; if (b.y < 0) bullets.splice(i, 1);
+          ctx.fillRect(b.x, b.y, b.w, b.h);
+        });
+
+        // Enemies Spawn
+        if (Date.now() - lastEnemy > 1800) {
+          enemies.push({ 
+            x: Math.random()*(w-65), y: -65, 
+            w: 65, h: 65, 
+            c: alienColors[Math.floor(Math.random()*alienColors.length)] 
+          });
+          lastEnemy = Date.now();
+        }
+        enemies.forEach((e, i) => {
+          e.y += 1.4;
+          if (e.y > h) enemies.splice(i, 1);
+          // Draw Alien (Wider Multi-color Almond)
+          ctx.save();
+          ctx.translate(e.x + 32, e.y + 32);
+          ctx.fillStyle = e.c; 
+          ctx.beginPath();
+          ctx.moveTo(0, -32);
+          ctx.quadraticCurveTo(30, 0, 0, 32);
+          ctx.quadraticCurveTo(-30, 0, 0, -32);
+          ctx.fill();
+          // Eyes
+          ctx.fillStyle = '#fff';
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = '#fff';
+          ctx.beginPath(); ctx.arc(-10, -6, 5, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(10, -6, 5, 0, Math.PI * 2); ctx.fill();
+          ctx.shadowBlur = 0;
+          ctx.restore();
+          
+          // Collisions (using larger bounds: 65px)
+          if (e.x < player.x+60 && e.x+65 > player.x && e.y < player.y+40 && e.y+65 > player.y) {
+            gameActive = false;
+            gameOverDiv.style.display = 'block';
+            finalScoreSpan.innerText = score;
+          }
+          bullets.forEach((b, j) => {
+            if (b.x < e.x+65 && b.x+4 > e.x && b.y < e.y+65 && b.y+15 > e.y) {
+              enemies.splice(i, 1); bullets.splice(j, 1);
+              score += 10; currentScoreSpan.innerText = score;
+            }
+          });
+        });
+
+        requestAnimationFrame(loop);
+      }
+      loop();
+    })();
+  </script>
+</div>
+

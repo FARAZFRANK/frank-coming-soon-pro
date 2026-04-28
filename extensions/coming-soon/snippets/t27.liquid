@@ -1,0 +1,109 @@
+<div class="template-twenty-seven-container csmm-main-bg">{% assign t27_bg = s.bgImageUrl %}{% if t27_bg == blank or t27_bg == 'null' %}{% assign t27_bg = 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=2070&auto=format&fit=crop' %}{% endif %}<div class="t27-background" >&nbsp;</div>
+  <div class="t27-overlay">&nbsp;</div>
+  <canvas id="particles-canvas" class="t27-canvas"></canvas>
+
+  <main class="t27-main-content">
+     <div class="t27-logo">{% if logo_to_show != blank %}<img src="{{ logo_to_show }}" alt="Logo" class="t27-logo-img" width="200" height="100" loading="lazy">{% else %}<svg class="t24-logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>{% endif %}</div>
+
+     <h1 class="t27-title">{% if s.title == nil %}<span class="t24-highlight">Join</span> the Movement{% else %}{% assign title_words = s.title | split: ' ' %}{% if title_words.size > 0 %}<span class="t24-highlight">{{ title_words[0] }}</span>{% for word in title_words offset:1 %} {{ word }}{% endfor %}{% else %}{{ s.title }}{% endif %}{% endif %}</h1>
+     <p class="t27-description">{% if s.description == nil %}Empowering the next generation of sustainable technology. We are currently working on something big. Stay tuned!{% else %}{{ s.description }}{% endif %}</p>{% if s.countdownDate != blank %}<div class="t27-countdown" id="countdown">
+        <div>
+          <div id="days" class="t27-countdown-number">00</div>
+          <div class="t27-countdown-label">Days</div>
+        </div>
+        <div>
+          <div id="hours" class="t27-countdown-number">00</div>
+          <div class="t27-countdown-label">Hours</div>
+        </div>
+        <div>
+          <div id="minutes" class="t27-countdown-number">00</div>
+          <div class="t27-countdown-label">Mins</div>
+        </div>
+        <div>
+          <div id="seconds" class="t27-countdown-number">00</div>
+          <div class="t27-countdown-label">Secs</div>
+        </div>
+     </div>{% endif %}<div class="t27-subscription">
+        <p class="t27-form-prompt">Join the movement. Be the first to know.</p>
+        <form class="t27-form">
+           <input type="email" placeholder="Enter your email address" class="t27-input" required>
+           <button type="submit" class="t27-submit">Stay Updated</button>
+        </form>
+     </div>
+
+     <ul class="t27-social">{% render 'cs-social', s: s %}</ul>
+  </main>
+</div>
+
+<script>
+  (function() {
+    function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let particlesArray = [];
+      class Particle {
+        constructor(x, y, size, speedX, speedY) {
+          this.x = x; this.y = y; this.size = size;
+          this.speedX = speedX; this.speedY = speedY;
+        }
+        update() {
+          this.x += this.speedX; this.y += this.speedY;
+          if (this.size > 0.2) this.size -= 0.05;
+        }
+        draw() {
+          ctx.fillStyle = 'rgba(16, 185, 129, 0.4)';
+          ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+      function createParticles() {
+        for (let i = 0; i < 60; i++) {
+          let size = Math.random() * 5 + 1;
+          let x = Math.random() * canvas.width;
+          let y = Math.random() * canvas.height;
+          let speedX = (Math.random() * 1) - 0.5;
+          let speedY = (Math.random() * 1) - 0.5;
+          particlesArray.push(new Particle(x, y, size, speedX, speedY));
+        }
+      }
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+          particlesArray[i].update(); particlesArray[i].draw();
+          if (particlesArray[i].size <= 0.3) {
+            particlesArray.splice(i, 1); i--;
+            let size = Math.random() * 5 + 1;
+            let x = Math.random() * canvas.width;
+            let y = canvas.height + size * 2;
+            let speedX = (Math.random() * 1) - 0.5;
+            let speedY = Math.random() * -2 - 1;
+            particlesArray.push(new Particle(x, y, size, speedX, speedY));
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+      });
+      createParticles(); animate();
+    }
+    if (document.readyState === 'complete') initParticles();
+    else window.addEventListener('load', initParticles);
+    // Custom observer for dashboard preview switches
+    const observer = new MutationObserver((mutations) => {
+      if (document.getElementById('particles-canvas')) {
+        initParticles();
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  })();
+</script>
+

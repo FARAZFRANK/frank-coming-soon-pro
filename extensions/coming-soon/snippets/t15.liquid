@@ -1,0 +1,29 @@
+<div class="template-fifteen-container csmm-main-bg">
+
+  <!-- Background Video -->
+  <video class="t15-video" autoplay muted loop playsinline width="1920" height="1080">
+    <source src="{% if s.videoUrl != blank %}{{ s.videoUrl }}{% else %}https://videos.pexels.com/video-files/7670835/7670835-uhd_2560_1440_30fps.mp4{% endif %}" type="video/mp4">
+  </video>
+
+  <!-- Dark overlay -->
+  <div class="t15-overlay"></div>
+
+  <!-- TOP BAR: Logo + Social -->
+  <div class="t15-topbar">
+    <div class="t15-logo"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy"></div>
+    <ul class="t15-social">{% render 'cs-social', s: s %}</ul>
+  </div>
+
+  <!-- BOTTOM LEFT: Countdown + Title -->
+  <div class="t15-bottom">
+    <div class="t15-clock">
+      <div class="time" id="days">00 <span class="t15-label">D</span></div>
+      <div class="time" id="hours">00 <span class="t15-label">H</span></div>
+      <div class="time" id="minutes">00 <span class="t15-label">M</span></div>
+      <div class="time" id="seconds">00 <span class="t15-label">S</span></div>
+    </div>
+    <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+  </div>
+
+</div>
+

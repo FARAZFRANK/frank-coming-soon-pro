@@ -1,0 +1,29 @@
+<div class="template-sixteen-container csmm-main-bg">
+
+  <!-- Background Video -->
+  <video class="t16-video" autoplay muted loop playsinline width="1920" height="1080">
+    <source src="{% if s.videoUrl != blank %}{{ s.videoUrl }}{% else %}https://videos.pexels.com/video-files/7670836/7670836-uhd_2560_1440_30fps.mp4{% endif %}" type="video/mp4">
+  </video>
+
+  <!-- Dark overlay -->
+  <div class="t16-overlay"></div>
+
+  <!-- TOP BAR: Logo + Social -->
+  <div class="t16-topbar">
+    <div class="t16-logo"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy"></div>
+    <ul class="t16-social">{% render 'cs-social', s: s %}</ul>
+  </div>
+
+  <!-- CENTER: Countdown + Outline Title -->
+  <div class="t16-center">
+    <div class="t16-clock">
+      <div class="time" id="days">00 <span class="t16-label">D</span></div>
+      <div class="time" id="hours">00 <span class="t16-label">H</span></div>
+      <div class="time" id="minutes">00 <span class="t16-label">M</span></div>
+      <div class="time" id="seconds">00 <span class="t16-label">S</span></div>
+    </div>
+    <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+  </div>
+
+</div>
+

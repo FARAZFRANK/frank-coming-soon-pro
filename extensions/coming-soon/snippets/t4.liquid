@@ -1,0 +1,23 @@
+<div class="template-four-container csmm-main-bg" style="background-image: url('{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}{{ s.bgImageUrl }}{% else %}{{ 'temp-4.png' | asset_url }}{% endif %}')">
+  <div class="home-content">
+     <div class="launching-text">Launching In...</div>
+     <div class="home-content__counter">
+       <div class="home-content__clock">
+          <div class="time" id="days">00 <span>D</span></div>
+          <div class="time" id="hours">00 <span>H</span></div>
+          <div class="time" id="minutes">00 <span>M</span></div>
+          <div class="time" id="seconds">00 <span>S</span></div>
+       </div>
+     </div>
+     <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+      <div class="cs-description">
+         <p>{% if s.description == nil %}We are currently working hard to create a new and exciting experience for you.{% else %}{{ s.description }}{% endif %}</p>
+      </div>
+     <form id="mc-form">
+        <input type="email" placeholder="Email Address">
+        <input type="submit" value="NOTIFY ME">
+     </form>
+     <ul class="home-social">{% render 'cs-social', s: s %}</ul>
+  </div>
+</div>
+

@@ -1,0 +1,41 @@
+<div class="template-twenty-five-container csmm-main-bg">
+  <main class="t25-split-layout">{% assign t25_bg = s.bgImageUrl %}{% if t25_bg == blank or t25_bg == 'null' %}{% assign t25_bg = 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1920&auto=format&fit=crop' %}{% endif %}<div class="t25-image-side" >&nbsp;</div>
+
+    <div class="t25-content-side">
+      <div class="t25-inner">
+        <div class="t25-logo"><a href="{{ shop.url }}"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="30" loading="lazy" style="max-height: 30px; margin-bottom: 2rem;"></a></div>
+
+        <h1 class="t25-title-font" style="font-size: clamp(2.5rem, 5vw, 5rem);">{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+        <p class="t25-description">{% if s.description == nil %}Discover the exclusive new collection. Join our private list for early access and runway updates.{% else %}{{ s.description }}{% endif %}</p>{% if s.countdownDate != blank %}<div class="t25-countdown" id="countdown">
+            <div class="t25-item">
+              <div class="t25-countdown-number" id="days">00</div>
+              <div class="t25-countdown-label">Days</div>
+            </div>
+            <div class="t25-item">
+              <div class="t25-countdown-number" id="hours">00</div>
+              <div class="t25-countdown-label">Hours</div>
+            </div>
+            <div class="t25-item">
+              <div class="t25-countdown-number" id="minutes">00</div>
+              <div class="t25-countdown-label">Mins</div>
+            </div>
+            <div class="t25-item">
+              <div class="t25-countdown-number" id="seconds">00</div>
+              <div class="t25-countdown-label">Secs</div>
+            </div>
+          </div>{% endif %}<div class="t25-subscription">
+          <p class="t25-form-prompt">Join the exclusive preview list.</p>
+          <form class="t25-form">
+            <input type="email" placeholder="Enter your email" class="t25-input" required>
+            <button type="submit" class="t25-submit">Notify Me</button>
+          </form>
+        </div>
+
+        <div class="t25-footer">
+          <ul class="t25-social">{% render 'cs-social', s: s %}</ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+

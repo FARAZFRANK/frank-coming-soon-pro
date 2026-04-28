@@ -1,0 +1,17 @@
+<div class="template-two-container csmm-main-bg" style="background-image: url('{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}{{ s.bgImageUrl }}{% else %}{{ 'temp-2.png' | asset_url }}{% endif %}');">
+  <div class="home-content">{% if logo_to_show != blank %}<div class="home-logo"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy"></div>{% endif %}<h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+     <div class="home-content__clock">
+        <div class="time" id="days">00 <span>D</span></div>
+        <div class="time" id="hours">00 <span>H</span></div>
+        <div class="time" id="minutes">00 <span>M</span></div>
+        <div class="time" id="seconds">00 <span>S</span></div>
+     </div>
+      {% comment %} Description removed requested {% endcomment %}
+     <form class="subscribe-form">
+        <input type="email" placeholder="Email Address">
+        <button type="submit">NOTIFY ME</button>
+     </form>
+     <ul class="home-social">{% render 'cs-social', s: s %}</ul>
+     <div class="home-content__line"></div>
+  </div>
+</div>

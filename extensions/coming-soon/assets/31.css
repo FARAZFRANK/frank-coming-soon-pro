@@ -1,0 +1,295 @@
+/* Template 31 - The Organic Morphing Blob */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+.template-31-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background-color: #faf9f6;
+  color: #1a1a1a;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Left Content */
+.t31-content {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 8%;
+  position: relative;
+  z-index: 10;
+}
+
+.t31-logo {
+  margin-bottom: 30px;
+}
+
+.t31-logo img {
+  max-height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.t31-subtitle {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ff4757;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(255, 71, 87, 0.1);
+  border-radius: 50px;
+}
+
+.t31-title {
+  font-size: clamp(32px, 6vw, 58px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+  color: #111;
+}
+
+.t31-desc {
+  font-size: 20px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 40px;
+  max-width: 480px;
+  font-weight: 400;
+}
+
+/* Minimal Line Timer */
+.t31-timer {
+  display: flex;
+  gap: 35px;
+  margin-bottom: 35px;
+}
+
+.t31-time-box {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  border-bottom: 2px solid #e1e1e1;
+  padding-bottom: 10px;
+  min-width: 60px;
+}
+
+.t31-num {
+  font-size: 40px;
+  font-weight: 800;
+  color: #111;
+}
+
+.t31-label {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Floating Pill Form */
+.t31-form {
+  display: flex;
+  max-width: 450px;
+  background: #fff;
+  padding: 8px;
+  border-radius: 60px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  border: 1px solid #f0f0f0;
+}
+
+.mc-form.t31-form input[type="email"] {
+  flex: 1;
+  padding: 15px 25px;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  font-family: 'Outfit', sans-serif;
+  outline: none;
+  height: auto;
+}
+
+.mc-form.t31-form input[type="email"]::placeholder {
+  color: #aaa;
+}
+
+.mc-form.t31-form button {
+  padding: 15px 35px;
+  background-color: #ff4757;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.mc-form.t31-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
+}
+
+.template-31-container .csmm-msg {
+  text-align: left;
+  margin-top: -30px;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  font-size: 15px;
+}
+
+.t31-social {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.t31-social a {
+  color: #111;
+  font-size: 20px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  background: #fff;
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+}
+
+.t31-social a:hover {
+  color: #ff4757;
+  transform: translateY(-3px);
+}
+
+/* Right Organic Blob */
+.t31-visual-pane {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.t31-blob-wrapper {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  right: -20%;
+  top: -10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.t31-blob {
+  width: 100%;
+  height: 100%;
+  max-width: 900px;
+  max-height: 900px;
+  background-size: cover;
+  background-position: center;
+  background-image: url('temp-3.png');
+  /* Local asset */
+  /* The pure CSS magic */
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  animation: morph 8s ease-in-out infinite both alternate;
+  box-shadow: inset 0 0 0 10px rgba(255, 255, 255, 0.2), 0 30px 60px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+
+  34% {
+    border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+  }
+
+  67% {
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+  }
+
+  100% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+}
+
+/* Blur lights */
+.t31-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff4757, #ff9f43);
+  opacity: 0.2;
+  filter: blur(50px);
+  z-index: 1;
+}
+
+.t31-circle-1 {
+  width: 400px;
+  height: 400px;
+  top: -150px;
+  left: -150px;
+}
+
+.t31-circle-2 {
+  width: 500px;
+  height: 500px;
+  bottom: -200px;
+  right: 30%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .template-31-container {
+    flex-direction: column;
+  }
+
+  .t31-content {
+    padding: 60px 40px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .t31-visual-pane {
+    min-height: 400px;
+    height: 50vh;
+  }
+
+  .t31-blob-wrapper {
+    width: 150%;
+    height: 150%;
+    right: auto;
+    top: auto;
+  }
+
+  .t31-title {
+    font-size: 44px;
+  }
+
+  .t31-form {
+    width: 100%;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 15px;
+  }
+
+  .mc-form.t31-form button {
+    margin-top: 10px;
+    border-radius: 15px;
+  }
+
+  .template-31-container .csmm-msg {
+    text-align: center;
+    padding-left: 0;
+  }
+}

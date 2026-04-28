@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?
+  expires             DateTime?
+  accessToken         String
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+}
+
+model Settings {
+  id                    Int      @id @default(autoincrement())
+  shop                  String   @unique
+  mode                  String   @default("LIVE")
+  templateId            String   @default("template_1")
+  title                 String   @default("Coming Soon")
+  description           String   @default("We are currently under maintenance. Please check back later.")
+  logoUrl               String?
+  bgImageUrl            String?
+  videoUrl              String?
+  countdownDate         String?
+  maintenanceScope      String   @default("ALL")
+  selectedResources     String?
+  socialLinks           String?
+  showSubscriberForm    Boolean  @default(true)
+  showHeader            Boolean  @default(false)
+  countdownTitle        String?  @default("Launching In...")
+  watchVideoUrl         String?
+  newsletterProvider    String   @default("NONE")
+  newsletterApiKey      String?
+  newsletterListId      String?
+  newsletterMailchimpDc String?
+  bypassPassword        String?
+  customCss             String?
+  customFont            String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model Subscriber {
+  id        Int      @id @default(autoincrement())
+  email     String
+  shop      String
+  createdAt DateTime @default(now())
+}

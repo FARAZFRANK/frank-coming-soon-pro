@@ -1,0 +1,30 @@
+<div class="template-thirteen-container csmm-main-bg">
+
+  <!-- Background Video -->
+  <video class="t13-video" autoplay muted loop playsinline width="1920" height="1080">
+    <source src="{% if s.videoUrl != blank %}{{ s.videoUrl }}{% else %}https://cdn.pixabay.com/video/2023/09/13/180386-864121573_large.mp4{% endif %}" type="video/mp4">
+  </video>
+
+  <!-- Overlays -->
+  <div class="t13-overlay-left"></div>
+  <div class="t13-overlay-right"></div>
+
+  <!-- Grid Overlay -->
+  <div class="t13-grid"></div>
+
+  <!-- Main Content -->
+  <div class="t13-content"><div class="t13-logo"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy"></div><h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+
+    <div class="t13-clock">
+      <div class="time days" id="days">00 <span class="t13-label">Days</span></div>
+      <div class="time hours" id="hours">00 <span class="t13-label">Hours</span></div>
+      <div class="time minutes" id="minutes">00 <span class="t13-label">Min</span></div>
+      <div class="time seconds" id="seconds">00 <span class="t13-label">Sec</span></div>
+    </div>
+  </div>
+
+  <!-- Social Icons (left vertical) -->
+  <ul class="t13-social">{% render 'cs-social', s: s %}</ul>
+
+</div>
+

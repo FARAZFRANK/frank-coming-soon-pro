@@ -1,0 +1,329 @@
+{% assign s = shop.metafields.coming_soon_app.settings.value %}
+{% if s and s.mode != 'LIVE' and request.design_mode == false %}
+  {% assign show_overlay = false %}
+  
+  {% if s.mode == 'COMING_SOON' or s.maintenanceScope == 'ALL' or s.maintenanceScope == nil %}
+    {% assign show_overlay = true %}
+  {% elsif s.maintenanceScope == 'PAGES' %}
+    {% for resource in s.selectedResources %}
+      {% assign res_id = resource.id | split: '/' | last | plus: 0 %}
+      {% if res_id == product.id or res_id == collection.id or res_id == page.id %}
+        {% assign show_overlay = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if s.countdownDate != blank %}
+    {% assign now_timestamp = 'now' | date: '%s' | plus: 0 %}
+    {% assign countdown_timestamp = s.countdownDate | date: '%s' | plus: 0 %}
+    {% if now_timestamp >= countdown_timestamp %}
+      {% assign show_overlay = false %}
+    {% endif %}
+  {% endif %}
+
+  {% if show_overlay %}
+    {% assign logo_to_show = 'logo-w.png' | asset_url %}
+    {% if s.logoUrl != blank and s.logoUrl != "null" and s.logoUrl != "" %}
+      {% assign logo_to_show = s.logoUrl %}
+    {% endif %}
+
+    {%- assign template_num = s.templateId | split: '_' | last -%}
+    <link rel="stylesheet" href="{{ template_num | append: '.css' | asset_url }}" id="csmm-theme-css">
+
+    <style id="csmm-styles">
+      {% if s.showHeader %}
+      header,.header,#shopify-section-header,.header-wrapper,.section-header,#shopify-section-sections--header,.sticky-header,[id*="header"],[class*="header"] {position:relative!important;z-index:10000000001!important;visibility:visible!important;opacity:1!important;}
+      {% else %}
+      header,.header,#shopify-section-header,.header-wrapper,.section-header,#shopify-section-sections--header,.sticky-header,[id*="header"],[class*="header"] {display:none!important;visibility:hidden!important;opacity:0!important;height:0!important;overflow:hidden!important;}
+      {% endif %}
+      #csmm-overlay {position:fixed!important;top:0!important;left:0!important;width:100vw!important;height:100vh!important;z-index:9999999999!important;background:#000!important;overflow-y:auto!important;visibility:visible!important;}
+      html.csmm-hide-body body { {% unless s.showHeader %}visibility:hidden!important;{% endunless %}overflow:hidden!important;height:100vh!important;}
+      html.csmm-hide-body body > #csmm-overlay {visibility:visible!important;}
+      .home-social li a {display:flex;align-items:center;justify-content:center;}
+      [class*="template-"][class*="-container"] * {box-sizing:border-box;}
+      input:focus,button:focus,textarea:focus,select:focus {outline:none!important;box-shadow:none!important;}
+      .csmm-msg { display:block; margin-top:2rem; font-size:1.1rem; font-weight:600; text-align:center; min-height:1.5rem; width:100%; transition: opacity 0.3s; }
+      .csmm-msg.success { color:#2ecc71; opacity:1; }
+      .csmm-msg.error { color:#e74c3c; opacity:1; }
+      .csmm-msg.hidden { opacity:0; }
+      
+      {% if s.customFont and s.customFont != 'Inter' %}
+        #csmm-overlay * { font-family: "{{ s.customFont }}", sans-serif !important; }
+      {% endif %}
+      
+      {% if s.customCss %}
+        {{ s.customCss }}
+      {% endif %}
+    </style>
+
+    {% if s.customFont and s.customFont != 'Inter' %}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ s.customFont | replace: ' ', '+' }}:wght@300;400;500;600;700&display=swap" id="csmm-custom-font">
+    {% endif %}
+
+    {% if show_overlay %}
+      <script>
+      (function(){
+        const bypassPass = "{{ s.bypassPassword | escape }}";
+        if (bypassPass && bypassPass !== "null" && bypassPass !== "") {
+          const urlParams = new URLSearchParams(window.location.search);
+          if (urlParams.get('bypass') === bypassPass) {
+            sessionStorage.setItem('cs_bypass', bypassPass);
+          }
+          if (sessionStorage.getItem('cs_bypass') === bypassPass) {
+            window.__csmm_bypassed = true;
+            const styleEl = document.getElementById('csmm-styles');
+            if (styleEl) styleEl.remove();
+            const cssEl = document.getElementById('csmm-theme-css');
+            if (cssEl) cssEl.remove();
+            const fontEl = document.getElementById('csmm-custom-font');
+            if (fontEl) fontEl.remove();
+            return;
+          }
+        }
+        {% if s.mode == 'COMING_SOON' or s.mode == 'MAINTENANCE' %} 
+          const countdownDate = new Date("{{ s.countdownDate }}").getTime(); 
+          if(!isNaN(countdownDate) && countdownDate <= new Date().getTime()) return; 
+        {% endif %} 
+        document.documentElement.classList.add('csmm-hide-body'); 
+      })();
+      </script>
+    {% endif %}
+
+    <template id="csmm-template">
+    <div id="csmm-overlay">
+      {%- assign t_id = s.templateId | remove: 'template_' -%}
+      {%- case t_id -%}
+        {%- when '1' %}{% render 't1', s: s, logo_to_show: logo_to_show %}
+        {%- when '2' %}{% render 't2', s: s, logo_to_show: logo_to_show %}
+        {%- when '3' %}{% render 't3', s: s, logo_to_show: logo_to_show %}
+        {%- when '4' %}{% render 't4', s: s, logo_to_show: logo_to_show %}
+        {%- when '5' %}{% render 't5', s: s, logo_to_show: logo_to_show %}
+        {%- when '6' %}{% render 't6', s: s, logo_to_show: logo_to_show %}
+        {%- when '7' %}{% render 't7', s: s, logo_to_show: logo_to_show %}
+        {%- when '8' %}{% render 't8', s: s, logo_to_show: logo_to_show %}
+        {%- when '9' %}{% render 't9', s: s, logo_to_show: logo_to_show %}
+        {%- when '10' %}{% render 't10', s: s, logo_to_show: logo_to_show %}
+        {%- when '11' %}{% render 't11', s: s, logo_to_show: logo_to_show %}
+        {%- when '12' %}{% render 't12', s: s, logo_to_show: logo_to_show %}
+        {%- when '13' %}{% render 't13', s: s, logo_to_show: logo_to_show %}
+        {%- when '14' %}{% render 't14', s: s, logo_to_show: logo_to_show %}
+        {%- when '15' %}{% render 't15', s: s, logo_to_show: logo_to_show %}
+        {%- when '16' %}{% render 't16', s: s, logo_to_show: logo_to_show %}
+        {%- when '17' %}{% render 't17', s: s, logo_to_show: logo_to_show %}
+        {%- when '18' %}{% render 't18', s: s, logo_to_show: logo_to_show %}
+        {%- when '19' %}{% render 't19', s: s, logo_to_show: logo_to_show %}
+        {%- when '20' %}{% render 't20', s: s, logo_to_show: logo_to_show %}
+        {%- when '21' %}{% render 't21', s: s, logo_to_show: logo_to_show %}
+        {%- when '22' %}{% render 't22', s: s, logo_to_show: logo_to_show %}
+        {%- when '23' %}{% render 't23', s: s, logo_to_show: logo_to_show %}
+        {%- when '24' %}{% render 't24', s: s, logo_to_show: logo_to_show %}
+        {%- when '25' %}{% render 't25', s: s, logo_to_show: logo_to_show %}
+        {%- when '26' %}{% render 't26', s: s, logo_to_show: logo_to_show %}
+        {%- when '27' %}{% render 't27', s: s, logo_to_show: logo_to_show %}
+        {%- when '28' %}{% render 't28', s: s, logo_to_show: logo_to_show %}
+        {%- when '29' %}{% render 't29', s: s, logo_to_show: logo_to_show %}
+        {%- when '30' %}{% render 't30', s: s, logo_to_show: logo_to_show %}
+        {%- when '31' %}{% render 't31', s: s, logo_to_show: logo_to_show %}
+
+        {%- else -%}
+          {% assign t_n = s.templateId | split: '_' | last %}
+          <div class="template-one-container" style="background-image: url('{% if s.bgImageUrl != blank %}{{ s.bgImageUrl }}{% else %}{{ t_n | append: '.png' | asset_url }}{% endif %}'); background-size: cover; background-position: center;">
+            <div class="home-content">
+               {% if s.logoUrl != blank %}<div class="home-logo"><img src="{{ s.logoUrl }}" alt="Logo" width="150" height="150"></div>{% endif %}
+               <h1>{{ s.title }}</h1>
+               <div class="home-content__clock"><div class="time" id="days">00 <span>D</span></div><div class="time" id="hours">00 <span>H</span></div><div class="time" id="minutes">00 <span>M</span></div><div class="time" id="seconds">00 <span>S</span></div></div>
+               <div className="cs-description">{{ s.description }}</div>
+               <form class="subscribe-form"><input type="email" placeholder="Email Address" required><button type="submit">NOTIFY ME</button></form>
+                <ul class="home-social">
+                   {% render 'cs-social', s: s %}
+                </ul>
+            </div>
+          </div>
+      {%- endcase -%}
+    </div>
+    </template>
+
+
+
+    <script>
+      (function() {
+        const countdownDate = new Date("{{ s.countdownDate }}").getTime();
+        
+        function initOverlay() {
+          if (window.__csmm_bypassed) return;
+
+          {% if s.mode == 'COMING_SOON' or s.mode == 'MAINTENANCE' %}
+            if (!isNaN(countdownDate) && countdownDate <= new Date().getTime()) {
+              document.documentElement.classList.remove('csmm-hide-body');
+              return;
+            }
+          {% endif %}
+
+          const template = document.getElementById('csmm-template');
+          if (!template || document.getElementById('csmm-overlay')) return;
+
+          const clone = template.content.cloneNode(true);
+          document.body.prepend(clone);
+
+          // Smart countdown update — works for ALL template styles:
+          function updateCountdownEl(el, val, label) {
+            if (!el) return;
+            var safeVal = String(val < 0 ? 0 : val).padStart(2, '0');
+            if (el.classList.contains('time-val')) {
+              el.textContent = safeVal;
+            } else {
+              var labelSpan = el.querySelector('span');
+              if (labelSpan) {
+                el.childNodes[0].nodeValue = safeVal + ' ';
+              } else {
+                el.innerHTML = safeVal + ' <span>' + label + '</span>';
+              }
+            }
+          }
+
+          if (!isNaN(countdownDate)) {
+            var x = setInterval(function() {
+              var now = new Date().getTime();
+              var distance = countdownDate - now;
+
+              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+              updateCountdownEl(document.getElementById('days'),    days,    '');
+              updateCountdownEl(document.getElementById('hours'),   hours,   '');
+              updateCountdownEl(document.getElementById('minutes'), minutes, '');
+              updateCountdownEl(document.getElementById('seconds'), seconds, '');
+
+              if (distance < 0) {
+                clearInterval(x);
+                var overlay = document.getElementById('csmm-overlay');
+                if (overlay) overlay.style.display = 'none';
+                document.documentElement.classList.remove('csmm-hide-body');
+                document.body.style.overflow = 'auto';
+                window.location.reload(); // Hard reload when expired
+              }
+            }, 1000);
+          }
+
+
+        }
+
+        if (document.body) {
+          initOverlay();
+        } else {
+          document.addEventListener('DOMContentLoaded', initOverlay);
+        }
+
+        // --- Handle forms after they are added ---
+        function showMsg(form, text, type) {
+          let msg = form.nextElementSibling && form.nextElementSibling.classList.contains('csmm-msg') ? form.nextElementSibling : null;
+          if(!msg) { msg = document.createElement('div'); msg.className = 'csmm-msg'; form.insertAdjacentElement('afterend', msg); }
+          msg.textContent = text; msg.className = 'csmm-msg ' + type;
+          setTimeout(() => { msg.classList.add('hidden'); }, 5000);
+        }
+
+        function attachFormListeners(root) {
+          const forms = (root || document).querySelectorAll('form');
+          forms.forEach(form => {
+            if (form.getAttribute('data-csmm-bound')) return;
+            form.setAttribute('data-csmm-bound', 'true');
+            
+            form.addEventListener('submit', function(e) {
+              const emailInput = form.querySelector('input[type="email"]');
+              if (!emailInput) return;
+              
+              e.preventDefault();
+              const email = emailInput.value;
+              const submitBtn = form.querySelector('button');
+              const originalBtnText = submitBtn ? submitBtn.innerText : 'NOTIFY ME';
+              
+              if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Subscribing...';
+              }
+
+              const formData = new FormData();
+              formData.append('email', email);
+              formData.append('shop', "{{ shop.permanent_domain }}");
+
+              const endpoint = "/apps/cs-api/api/subscribe";
+
+              fetch(endpoint, {
+                method: 'POST',
+                body: formData,
+                mode: 'cors',
+              })
+              .then(res => res.json())
+              .then(data => {
+                if (data.success) {
+                  emailInput.value = '';
+                  if (submitBtn) {
+                    submitBtn.innerText = 'Thank you!';
+                    setTimeout(() => { submitBtn.disabled = false; submitBtn.innerText = originalBtnText; }, 3000);
+                  }
+                  showMsg(form, 'Success! We will notify you soon.', 'success');
+                } else {
+                  throw new Error(data.error || 'Failed');
+                }
+              })
+              .catch(err => {
+                console.error('Subscription Error:', err);
+                showMsg(form, 'Something went wrong. Please try again.', 'error');
+                if (submitBtn) {
+                  submitBtn.disabled = false;
+                  submitBtn.innerText = originalBtnText;
+                }
+              });
+            });
+          });
+        }
+
+        // Initial check for non-overlay forms (if any)
+        attachFormListeners();
+        
+        // Re-check after overlay is added
+        const csmmFormObserver = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.addedNodes.length) attachFormListeners();
+          });
+        });
+        csmmFormObserver.observe(document.documentElement, { childList: true, subtree: true });
+
+        var csmmReady = false;
+        setTimeout(function() { csmmReady = true; }, 500);
+
+        var observer = new MutationObserver(function() {
+          if (!csmmReady || window.__csmm_bypassed) return;
+          var overlay = document.getElementById('csmm-overlay');
+          var isExpired = false;
+          {% if s.mode == 'COMING_SOON' or s.mode == 'MAINTENANCE' %}
+            isExpired = !isNaN(countdownDate) && (countdownDate - new Date().getTime() < 0);
+          {% endif %}
+          if (!isExpired) {
+            var overlayHidden = !overlay
+              || window.getComputedStyle(overlay).display === 'none'
+              || window.getComputedStyle(overlay).visibility === 'hidden';
+            var bodyVisible = !document.documentElement.classList.contains('csmm-hide-body');
+            if (overlayHidden || bodyVisible) {
+              csmmReady = false;
+              window.location.reload();
+            }
+          }
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+        // Subscriber form handling moved inside observer/init logic above
+      })();
+    </script>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Coming Soon Page",
+    "target": "head",
+    "settings": []
+  }
+{% endschema %}

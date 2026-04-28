@@ -1,0 +1,193 @@
+/* Template 6 - The Dawn Minimalist */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:wght@700;900&display=swap');
+
+.template-6-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: #000000;
+  font-family: 'Outfit', sans-serif;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.t6-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 1;
+}
+
+.template-6-container[style*="background-image"] .t6-overlay {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.t6-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  width: 100%;
+}
+
+.t6-logo {
+  margin-bottom: 50px;
+}
+
+.t6-logo img {
+  max-height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.t6-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  margin-bottom: 25px;
+  opacity: 0.7;
+}
+
+.t6-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 8vw, 84px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.t6-desc {
+  font-size: 20px;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 50px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.t6-timer {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  margin-bottom: 45px;
+}
+
+.t6-time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.t6-num {
+  font-size: 72px;
+  font-weight: 300;
+  color: #000;
+  letter-spacing: -2px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+.t6-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.mc-form.t6-form {
+  display: flex;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 40px;
+  border: 1px solid #000;
+  padding: 5px;
+  background: white;
+}
+
+.mc-form.t6-form input[type="email"] {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+  color: #000;
+  height: auto;
+}
+
+.mc-form.t6-form button {
+  background: #000;
+  color: #fff !important;
+  border: none;
+  padding: 15px 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.mc-form.t6-form button:hover {
+  opacity: 0.8;
+}
+
+.t6-social {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.t6-social a {
+  color: #000000;
+  font-size: 24px;
+  transition: opacity 0.3s ease;
+}
+
+.t6-social a:hover {
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 768px) {
+  .t6-timer {
+    gap: 20px;
+  }
+  
+  .t6-num {
+    font-size: 40px;
+  }
+  
+  .mc-form.t6-form {
+    flex-direction: column;
+    border: none;
+    padding: 0;
+    gap: 10px;
+    background: transparent;
+  }
+  
+  .mc-form.t6-form input[type="email"] {
+    border: 1px solid #000;
+    background: white;
+  }
+  
+  .t6-title {
+    font-size: 48px;
+  }
+}

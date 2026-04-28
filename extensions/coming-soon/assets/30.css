@@ -1,0 +1,191 @@
+/* Template 30 - Split Screen */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+.template-30-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  background-color: #ffffff;
+  color: #111827;
+}
+
+.t30-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.t30-right {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.t30-logo {
+  margin-bottom: 2rem;
+}
+
+.t30-logo img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.t30-subtitle {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.t30-title {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+  color: #111827;
+}
+
+.t30-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 40px;
+  max-width: 560px;
+}
+
+.t30-timer {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.t30-time-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.t30-num {
+  font-size: 36px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1;
+}
+
+.t30-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+.t30-form {
+  display: flex;
+  max-width: 400px;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.t30-form input {
+  flex: 1;
+  height: 52px;
+  padding: 0 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f9fafb;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.t30-form input:focus {
+  border-color: #111827;
+}
+
+.t30-form button {
+  height: 52px;
+  padding: 0 28px;
+  background-color: #111827;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.t30-form button:hover {
+  background-color: #374151;
+}
+
+.t30-social {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.t30-social a {
+  color: #4b5563;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  display: flex;
+}
+
+.t30-social a:hover {
+  color: #111827;
+}
+
+@media only screen and (max-width: 768px) {
+  .template-30-container {
+    flex-direction: column;
+  }
+
+  .t30-left {
+    padding: 40px 30px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .t30-title {
+    font-size: 40px;
+  }
+
+  .t30-desc {
+    font-size: 15px;
+  }
+
+  .t30-timer {
+    justify-content: center;
+  }
+
+  .t30-form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .t30-form button {
+    width: 100%;
+  }
+
+  .t30-right {
+    min-height: 400px;
+  }
+}

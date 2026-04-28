@@ -1,0 +1,42 @@
+<div class="template-31-container csmm-main-bg">
+    <div class="t31-circle t31-circle-1">&nbsp;</div>
+    <div class="t31-circle t31-circle-2">&nbsp;</div>
+
+    <div class="t31-content">{% if logo_to_show != blank and logo_to_show != 'null' %}<div class="t31-logo">
+            <img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy">
+        </div>{% endif %}{% if s.countdownDate != blank %}<div class="t31-subtitle">{% if s.countdownTitle == nil %}Launching In...{% else %}{{ s.countdownTitle }}{% endif %}</div>{% endif %}<h1 class="t31-title">{% if s.title == nil %}Creative Digital Agency{% else %}{{ s.title }}{% endif %}</h1>
+        <p class="t31-desc">{% if s.description == nil %}We're building a new kind of agency that focuses on design, technology, and strategy. Stay tuned for our relaunch.{% else %}{{ s.description }}{% endif %}</p>
+
+        <div class="t31-timer">
+            <div class="t31-time-box">
+                <span class="t31-num" id="days">00</span>
+                <span class="t31-label">D</span>
+            </div>
+            <div class="t31-time-box">
+                <span class="t31-num" id="hours">00</span>
+                <span class="t31-label">H</span>
+            </div>
+            <div class="t31-time-box">
+                <span class="t31-num" id="minutes">00</span>
+                <span class="t31-label">M</span>
+            </div>
+            <div class="t31-time-box">
+                <span class="t31-num" id="seconds">00</span>
+                <span class="t31-label">S</span>
+            </div>
+        </div>
+
+        <form class="t31-form mc-form">
+            <input type="email" placeholder="Enter your email address..." required>
+            <button type="submit">Get Notified</button>
+        </form>
+
+        <ul class="t31-social">{% render 'cs-social', s: s %}</ul>
+    </div>
+
+    <div class="t31-visual-pane">
+        <div class="t31-blob-wrapper">
+             <div class="t31-blob" style="background-image: url('{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}{{ s.bgImageUrl }}{% else %}{{ 'temp-3.png' | asset_url }}{% endif %}');">&nbsp;</div>
+        </div>
+    </div>
+</div>

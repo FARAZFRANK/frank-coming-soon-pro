@@ -1,0 +1,172 @@
+/* Template 8 - Minimalist Monochrome Design */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;900&display=swap');
+
+.template-eight-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  padding: 40px;
+}
+
+.template-eight-container .home-logo img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 60px;
+  filter: invert(1);
+}
+
+.template-eight-container h1 {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: clamp(10px, 2vw, 30px);
+  margin-bottom: 40px;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.template-eight-container .home-content__counter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.template-eight-container .home-content__text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.template-eight-container .home-content__text p {
+  font-size: clamp(0.9rem, 1.5vw, 1.4rem);
+  max-width: 800px;
+  line-height: 2;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 0 auto 80px;
+}
+
+.template-eight-container .home-content__clock {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 5vw, 80px);
+  margin: 0 auto 100px auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px 0;
+  width: 100%;
+  max-width: 800px;
+}
+
+.template-eight-container .time {
+  min-width: 120px;
+}
+
+.template-eight-container .time-val {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  display: block;
+  color: #ffffff;
+}
+
+.template-eight-container .time-label {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.3;
+}
+
+.template-eight-container .home-content__subscribe {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.template-eight-container #mc-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.template-eight-container input[type="email"] {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 20px 0;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  outline: none;
+  transition: border-color 0.4s ease;
+}
+
+.template-eight-container input[type="email"]:focus {
+  border-bottom-color: #ffffff;
+}
+
+.template-eight-container input[type="submit"] {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.template-eight-container input[type="submit"]:hover {
+  opacity: 0.7;
+}
+
+.template-eight-container .home-social {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 100px;
+  padding: 0;
+}
+
+.template-eight-container .home-social a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.template-eight-container .home-social a:hover {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  .template-eight-container .home-content__clock {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .template-eight-container .time {
+    min-width: 80px;
+  }
+}

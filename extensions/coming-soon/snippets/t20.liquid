@@ -1,0 +1,198 @@
+<div class="template-twenty-container">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <canvas id="t20-canvas"></canvas>
+  
+  <div id="t20-game-msg">
+    <div id="t20-msg-text">PAUSED</div>
+    <div style="font-size: 10px; margin-top: 20px; color: #0ff;">SCORE: <span id="t20-final-score">0</span></div>
+    <div style="font-size: 8px; margin-top: 20px; line-height: 2;">USE ARROW KEYS TO MOVE<br>PRESS 'ENTER' TO START</div>
+  </div>
+
+  <div class="t20-overlay-content">
+    <div class="t20-topbar">
+      <div class="t20-score-box">XP: <span id="t20-current-score">0</span></div>
+      <ul class="t20-social">
+        {% render 'cs-social', s: s %}
+      </ul>
+    </div>
+    
+    <div class="t20-center">
+      <div class="t20-clock">
+        <div class="time">
+          <span id="days">00</span><span class="label">DAYS</span>
+        </div>
+        <div class="time">
+          <span id="hours">00</span><span class="label">HOURS</span>
+        </div>
+        <div class="time">
+          <span id="minutes">00</span><span class="label">MINS</span>
+        </div>
+        <div class="time">
+          <span id="seconds">00</span><span class="label">SECS</span>
+        </div>
+      </div>
+      <h1>{% if s.title == blank %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+    </div>
+
+    <div style="height: 100px;"></div>
+  </div>
+
+  <script>
+    (function() {
+      const canvas = document.getElementById('t20-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const gameMsg = document.getElementById('t20-game-msg');
+      const msgText = document.getElementById('t20-msg-text');
+      const finalScoreSpan = document.getElementById('t20-final-score');
+      const currentScoreSpan = document.getElementById('t20-current-score');
+      
+      const gridSize = 20;
+      let w, h, rows, cols;
+      let snake, food, dx, dy, nextDx, nextDy, score, gameActive, gameSpeed, lastTime;
+      
+      function resize() {
+        w = canvas.width = Math.floor(Math.min(window.innerWidth * 0.9, 600) / gridSize) * gridSize;
+        h = canvas.height = Math.floor(Math.min(window.innerHeight * 0.5, 400) / gridSize) * gridSize;
+        cols = w / gridSize;
+        rows = h / gridSize;
+        if (!gameActive) init(); 
+      }
+      
+      window.addEventListener('resize', resize);
+
+      function init() {
+        snake = [
+          {x: 5, y: 5},
+          {x: 4, y: 5},
+          {x: 3, y: 5}
+        ];
+        dx = 1; dy = 0;
+        nextDx = 1; nextDy = 0;
+        score = 0;
+        gameActive = false;
+        gameSpeed = 130;
+        lastTime = 0;
+        currentScoreSpan.innerText = '0';
+        spawnFood(); // Spawn initial food to prevent draw crash
+        gameMsg.style.display = 'block';
+        msgText.innerText = "READY?";
+      }
+
+      function spawnFood() {
+        food = {
+          x: Math.floor(Math.random() * cols),
+          y: Math.floor(Math.random() * rows)
+        };
+        if (snake.some(s => s.x === food.x && s.y === food.y)) spawnFood();
+      }
+
+      function restart() {
+        init();
+        spawnFood();
+        gameActive = true;
+        gameMsg.style.display = 'none';
+      }
+
+      function gameOver() {
+        gameActive = false;
+        msgText.innerText = "Wasted";
+        finalScoreSpan.innerText = score;
+        gameMsg.style.display = 'block';
+      }
+
+      window.addEventListener('keydown', e => {
+        const key = e.key;
+        if (key === 'ArrowUp' && dy === 0) { nextDx = 0; nextDy = -1; e.preventDefault(); }
+        if (key === 'ArrowDown' && dy === 0) { nextDx = 0; nextDy = 1; e.preventDefault(); }
+        if (key === 'ArrowLeft' && dx === 0) { nextDx = -1; nextDy = 0; e.preventDefault(); }
+        if (key === 'ArrowRight' && dx === 0) { nextDx = 1; nextDy = 0; e.preventDefault(); }
+        
+        if (key === 'Enter') {
+          if (!gameActive) restart();
+          e.preventDefault();
+        }
+      });
+
+      gameMsg.addEventListener('click', () => {
+        if (!gameActive) restart();
+      });
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+
+        // Draw Food
+        ctx.fillStyle = '#FFB100';
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#FFB100';
+        ctx.beginPath();
+        ctx.arc(food.x * gridSize + gridSize/2, food.y * gridSize + gridSize/2, gridSize/2 - 4, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Draw Snake
+        snake.forEach((segment, i) => {
+          ctx.shadowBlur = i === 0 ? 15 : 0;
+          ctx.shadowColor = '#95BF47';
+          ctx.fillStyle = i === 0 ? '#fff' : '#95BF47';
+          
+          const x = segment.x * gridSize + 1;
+          const y = segment.y * gridSize + 1;
+          const s = gridSize - 2;
+          
+          // Simple rectangle for compatibility
+          ctx.fillRect(x, y, s, s);
+
+          // Eyes for head
+          if (i === 0) {
+            ctx.fillStyle = '#000';
+            ctx.shadowBlur = 0;
+            if (dx === 1) { 
+              ctx.fillRect(x + s - 6, y + 4, 3, 3);
+              ctx.fillRect(x + s - 6, y + s - 7, 3, 3);
+            } else if (dx === -1) { 
+              ctx.fillRect(x + 3, y + 4, 3, 3);
+              ctx.fillRect(x + 3, y + s - 7, 3, 3);
+            } else if (dy === -1) { 
+              ctx.fillRect(x + 4, y + 3, 3, 3);
+              ctx.fillRect(x + s - 7, y + 3, 3, 3);
+            } else if (dy === 1) { 
+              ctx.fillRect(x + 4, y + s - 6, 3, 3);
+              ctx.fillRect(x + s - 7, y + s - 6, 3, 3);
+            }
+          }
+        });
+        ctx.shadowBlur = 0;
+      }
+
+      function update(time) {
+        if (gameActive && time - lastTime > gameSpeed) {
+          lastTime = time;
+          dx = nextDx;
+          dy = nextDy;
+
+          const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+
+          if (head.x < 0 || head.x >= cols || head.y < 0 || head.y >= rows || 
+              snake.some(s => s.x === head.x && s.y === head.y)) {
+            gameOver();
+          } else {
+            snake.unshift(head);
+            if (head.x === food.x && head.y === food.y) {
+              score += 100;
+              currentScoreSpan.innerText = score;
+              spawnFood();
+              if (gameSpeed > 70) gameSpeed -= 2;
+            } else {
+              snake.pop();
+            }
+          }
+        }
+        draw();
+        requestAnimationFrame(update);
+      }
+
+      resize();
+      requestAnimationFrame(update);
+    })();
+  </script>
+</div>

@@ -1,0 +1,180 @@
+/* Template 18 — Exact Match for User Image */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+.template-eighteen-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #050a14;
+}
+
+.template-eighteen-container .t18-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.template-eighteen-container .t18-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* ── TOP: Logo then Social ── */
+.template-eighteen-container .t18-topcenter {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.template-eighteen-container .t18-logo img {
+  height: clamp(50px, 8vh, 80px);
+  width: auto;
+  object-fit: contain;
+}
+
+.template-eighteen-container .t18-social {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.template-eighteen-container .t18-social li a {
+  color: #fff;
+  font-size: 1.3rem;
+  display: block;
+  opacity: 0.9;
+}
+
+/* ── CENTER: Countdown + Title + Form ── */
+.template-eighteen-container .t18-center {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 10vh;
+}
+
+.template-eighteen-container .t18-clock {
+  display: flex;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.template-eighteen-container .t18-clock .time {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 5rem);
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+}
+
+.template-eighteen-container .t18-clock .time span.t18-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 6px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* ── THIN OUTLINE TITLE ── */
+.template-eighteen-container h1 {
+  margin-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+  /* Keep it thin */
+  font-size: clamp(2rem, 8vw, 12rem);
+  /* Reduced max size to fit better */
+  letter-spacing: 2px;
+  mix-blend-mode: lighten;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: #ffffff;
+  text-transform: uppercase;
+  background-image: url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjFyZGFxeDJmZ3BlcnlnNXliYWFyYW5tNTY4dno0a2pldnJ5aGprbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U3qYN8S0j3bpK/giphy.gif);
+  background-size: cover;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  margin-bottom: 2rem;
+}
+
+/* ── FORM: Translucent Input + Grey Button ── */
+.template-eighteen-container .t18-form-container {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 1rem;
+}
+
+.template-eighteen-container .t18-form {
+  display: flex;
+  height: 60px;
+}
+
+.template-eighteen-container .t18-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  /* Translucent */
+  border: none;
+  padding: 0 25px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  outline: none;
+  font-size: 15px;
+}
+
+.template-eighteen-container .t18-submit {
+  background: #d0d0d0;
+  /* Light grey button */
+  color: #1a1a1a;
+  border: none;
+  padding: 0 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.template-eighteen-container .t18-submit:hover {
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .template-eighteen-container .t18-clock {
+    gap: 1rem;
+  }
+
+  .template-eighteen-container .t18-form {
+    flex-direction: column;
+    height: auto;
+    gap: 10px;
+  }
+
+  .template-eighteen-container .t18-submit {
+    height: 55px;
+  }
+
+  .template-eighteen-container h1 {
+    font-size: 3.5rem;
+    letter-spacing: 0.05em;
+  }
+}

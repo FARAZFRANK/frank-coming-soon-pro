@@ -1,0 +1,37 @@
+<div class="template-30-container csmm-main-bg">
+    <div class="t30-left">{% if logo_to_show != blank and logo_to_show != 'null' %}<div class="t30-logo">
+            <img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy">
+        </div>{% endif %}{% if s.countdownDate != blank %}<div class="t30-subtitle">{% if s.countdownTitle == nil %}Launching In...{% else %}{{ s.countdownTitle }}{% endif %}</div>{% endif %}<h1 class="t30-title">{% if s.title == nil %}Modern Elegance{% else %}{{ s.title }}{% endif %}</h1>
+        <p class="t30-desc">{% if s.description == nil %}Our new luxury furniture collection is coming soon. Experience the perfect blend of form and function.{% else %}{{ s.description }}{% endif %}</p>
+
+        <div class="t30-timer">
+            <div class="t30-time-box">
+                <span class="t30-num" id="days">00</span>
+                <span class="t30-label">Days</span>
+            </div>
+            <div class="t30-time-box">
+                <span class="t30-num" id="hours">00</span>
+                <span class="t30-label">Hours</span>
+            </div>
+            <div class="t30-time-box">
+                <span class="t30-num" id="minutes">00</span>
+                <span class="t30-label">Mins</span>
+            </div>
+            <div class="t30-time-box">
+                <span class="t30-num" id="seconds">00</span>
+                <span class="t30-label">Secs</span>
+            </div>
+        </div>
+
+        <form class="t30-form mc-form">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit">NOTIFY ME</button>
+        </form>
+
+        <ul class="t30-social">{% render 'cs-social', s: s %}</ul>
+    </div>
+
+    <div class="t30-right" style="background-image: url('{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}{{ s.bgImageUrl }}{% else %}{{ 'temp-2.png' | asset_url }}{% endif %}');">
+    </div>
+</div>
+

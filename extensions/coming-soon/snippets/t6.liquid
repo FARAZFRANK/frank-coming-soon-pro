@@ -1,0 +1,52 @@
+{{ '6.css' | asset_url | stylesheet_tag }}
+
+<div class="template-6-container" style="{% if s.bgImageUrl != blank %}background-image: url('{{ s.bgImageUrl }}'); background-color: transparent;{% else %}background-color: #ffffff;{% endif %}">
+  <div class="t6-overlay"></div>
+  
+  <div class="t6-content">
+    <div class="t6-logo" style="{% if s.logoUrl == blank %}display: none;{% endif %}">
+      {% if s.logoUrl != blank %}
+        <img src="{{ s.logoUrl }}" alt="Logo" width="150" height="150">
+      {% endif %}
+    </div>
+
+    {% if s.countdownDate != blank %}
+      <div class="t6-subtitle">{% if s.countdownTitle == nil %}Launching In...{% else %}{{ s.countdownTitle }}{% endif %}</div>
+    {% endif %}
+
+    <h1 class="t6-title">{% if s.title == nil %}Something Big is Brewing{% else %}{{ s.title }}{% endif %}</h1>
+
+    <p class="t6-desc">{% if s.description == nil %}We're currently working on creating a new and exciting experience for you. Sign up now to be the first to know when we launch.{% else %}{{ s.description }}{% endif %}</p>
+
+    <div class="t6-timer" id="cs-timer">
+      <div class="t6-time-box">
+        <span class="t6-num" id="days">00</span>
+        <span class="t6-label">Days</span>
+      </div>
+      <div class="t6-time-box">
+        <span class="t6-num" id="hours">00</span>
+        <span class="t6-label">Hours</span>
+      </div>
+      <div class="t6-time-box">
+        <span class="t6-num" id="minutes">00</span>
+        <span class="t6-label">Min</span>
+      </div>
+      <div class="t6-time-box">
+        <span class="t6-num" id="seconds">00</span>
+        <span class="t6-label">Sec</span>
+      </div>
+    </div>
+
+    {% if s.showSubscriberForm %}
+    <form class="t6-form mc-form">
+      <input type="email" name="email" placeholder="Email address" required>
+      <input type="hidden" name="shop" value="{{ shop.permanent_domain }}">
+      <button type="submit">Notify Me</button>
+    </form>
+    {% endif %}
+
+    <ul class="t6-social">
+      {% render 'cs-social', s: s %}
+    </ul>
+  </div>
+</div>

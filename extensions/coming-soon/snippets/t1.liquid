@@ -1,0 +1,37 @@
+<div class="template-one-container csmm-main-bg" style="background-image: url('{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}{{ s.bgImageUrl }}{% else %}{{ 'temp-1.png' | asset_url }}{% endif %}');">
+    <div class="home-particles">&nbsp;</div>
+
+    <main class="home-content">
+        <div class="home-content__main">
+            <!-- Logo -->{% if logo_to_show != blank %}<div class="home-logo">
+                <img src="{{ logo_to_show }}" alt="Logo" class="t29-logo-img" width="200" height="200" loading="lazy">
+            </div>{% endif %}
+            <h3>{% if s.countdownTitle == nil %}Launching In...{% else %}{{ s.countdownTitle }}{% endif %}</h3>
+
+            <!-- Countdown Timer -->
+            <div class="home-content__counter">
+                <div class="time" id="days">00 <span>D</span></div>
+                <div class="time" id="hours">00 <span>H</span></div>
+                <div class="time" id="minutes">00 <span>M</span></div>
+                <div class="time" id="seconds">00 <span>S</span></div>
+            </div>
+
+            <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+            
+            <div class="home-content__text">
+                <p>{% if s.description == nil %}We are currently working hard to create a new and exciting experience for you.{% else %}{{ s.description }}{% endif %}</p>
+            </div>
+
+            <!-- Subscription Form -->
+            <div class="home-content__subscribe">
+                <form class="mc-form">
+                    <input type="email" placeholder="Email Address" required>
+                    <button type="submit">NOTIFY ME</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Social Icons -->
+        <ul class="home-social">{% render 'cs-social', s: s %}</ul>
+    </main>
+</div>

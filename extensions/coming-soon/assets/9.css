@@ -1,0 +1,176 @@
+/* Template 9 - Starry Night Design */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;700;900&display=swap');
+
+.template-nine-container {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px;
+}
+
+/* Pseudo-stars using multiple box-shadows */
+.template-nine-container .stars-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 1px; height: 1px;
+  background: transparent;
+  box-shadow: 198px 57px #FFF , 466px 209px #FFF , 1803px 311px #FFF , 373px 1827px #FFF , 598px 127px #FFF , 1123px 567px #FFF , 1450px 1024px #FFF;
+  animation: animStar 50s linear infinite;
+  z-index: 1;
+}
+
+@keyframes animStar {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-2000px); }
+}
+
+.template-nine-container .nine-content {
+  position: relative;
+  z-index: 5;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.template-nine-container .home-logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 40px;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+}
+
+.template-nine-container h1 {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 100;
+  letter-spacing: clamp(10px, 1.5vw, 25px);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.4));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.template-nine-container .home-content__text p {
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-weight: 300;
+  max-width: 700px;
+  line-height: 2;
+  letter-spacing: 4px;
+  opacity: 0.6;
+  margin: 0 auto 60px;
+  text-transform: uppercase;
+}
+
+.template-nine-container .home-content__clock {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 4vw, 50px);
+  margin-bottom: 80px;
+}
+
+.template-nine-container .time {
+  width: clamp(80px, 12vw, 140px);
+  height: clamp(80px, 12vw, 140px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+}
+
+.template-nine-container .time-val {
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 700;
+  display: block;
+}
+
+.template-nine-container .time-label {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.3;
+}
+
+.template-nine-container .home-content__subscribe {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.template-nine-container #mc-form {
+  display: flex;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  padding: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.template-nine-container input[type="email"] {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  padding: 15px 30px;
+  flex: 1;
+  outline: none;
+  letter-spacing: 2px;
+}
+
+.template-nine-container input[type="submit"] {
+  background: #ffffff;
+  color: #0c101b;
+  border: none;
+  border-radius: 40px;
+  padding: 0 40px;
+  font-weight: 950;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.template-nine-container input[type="submit"]:hover {
+  background: rgba(255,255,255,0.8);
+  transform: scale(1.05);
+}
+
+.template-nine-container .home-social {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 80px;
+  padding: 0;
+}
+
+.template-nine-container .home-social a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.template-nine-container .home-social a:hover {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  .template-nine-container h1 { font-size: 2.5rem; }
+  .template-nine-container .home-content__clock { gap: 15px; }
+  .template-nine-container .time { width: 70px; height: 70px; }
+}

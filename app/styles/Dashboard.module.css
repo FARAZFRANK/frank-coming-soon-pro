@@ -1,0 +1,49 @@
+.sectionIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.brandingIcon {
+  background: var(--p-color-bg-fill-info-secondary, #e0f0ff);
+}
+
+.contentIcon {
+  background: var(--p-color-bg-fill-success-secondary, #e3f1df);
+}
+
+.displayIcon {
+  background: var(--p-color-bg-fill-warning-secondary, #fdf0d5);
+}
+
+.countdownIcon {
+  background: var(--p-color-bg-fill-critical-secondary, #fce4e4);
+}
+
+.socialIcon {
+  background: var(--p-color-bg-fill-info-secondary, #e0f0ff);
+}
+
+.stickyPreview {
+  position: -webkit-sticky; /* Support for Safari */
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  width: 100%;
+  z-index: 10;
+  transition: top 0.3s ease;
+}
+
+.previewContainer {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 12px solid #ffffff;
+  box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5), 0 30px 60px -30px rgba(0,0,0,0.3);
+  background-color: #000;
+  transform: translateZ(0); /* Force hardware acceleration */
+}

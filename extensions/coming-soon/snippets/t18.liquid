@@ -1,0 +1,34 @@
+<div class="template-eighteen-container csmm-main-bg">
+
+  <!-- Background Video -->
+  <video class="t18-video" autoplay muted loop playsinline width="1920" height="1080">
+    <source src="{% if s.videoUrl != blank %}{{ s.videoUrl }}{% else %}https://cdn.pixabay.com/video/2019/04/03/22555-328624767_large.mp4{% endif %}" type="video/mp4">
+  </video>
+
+  <!-- Dark overlay -->
+  <div class="t18-overlay"></div>
+
+  <!-- TOP: Logo then Social (Stack) -->
+  <div class="t18-topcenter"><div class="t18-logo"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="200" loading="lazy"></div><ul class="t18-social">{% render 'cs-social', s: s %}</ul>
+  </div>
+
+  <!-- CENTER: Countdown + Title + Subscribe -->
+  <div class="t18-center">
+    <div class="t18-clock">
+      <div class="time" id="days">00 <span class="t18-label">D</span></div>
+      <div class="time" id="hours">00 <span class="t18-label">H</span></div>
+      <div class="time" id="minutes">00 <span class="t18-label">M</span></div>
+      <div class="time" id="seconds">00 <span class="t18-label">S</span></div>
+    </div>
+    <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+
+    <div class="t18-form-container">
+      <form class="t18-form">
+        <input type="email" placeholder="Email Address" class="t18-input" required>
+        <button type="submit" class="t18-submit">Notify Me</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+

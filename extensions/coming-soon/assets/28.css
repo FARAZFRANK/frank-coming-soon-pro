@@ -1,0 +1,215 @@
+/* Template 28 - Minimalist Gym Theme */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500&display=swap');
+
+.template-twenty-eight-container {
+	font-family: 'Inter', sans-serif;
+	color: #E5E7EB;
+	position: relative;
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+/* Static Image Background with Ken Burns effect */
+.t28-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-size: cover;
+	background-position: center;
+	animation: t28-kenburns 30s ease-out infinite;
+    display: block !important;
+}
+
+@keyframes t28-kenburns {
+	0% { transform: scale(1); }
+	50% { transform: scale(1.1); }
+	100% { transform: scale(1); }
+}
+
+/* Dark overlay for better text readability */
+.t28-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.8);
+	z-index: 2;
+    display: block !important;
+}
+
+/* Main content fade-in animation */
+.t28-main-content {
+	animation: t28-fadeIn 1.5s ease-out;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+@keyframes t28-fadeIn {
+	from { opacity: 0; transform: translateY(30px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom font for the main title */
+.t28-title {
+	font-family: 'Barlow Condensed', sans-serif;
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: -0.01em;
+	line-height: 0.9;
+    font-size: clamp(3.5rem, 12vw, 6.5rem);
+    color: #fff;
+    margin: 1rem 0 2rem;
+    text-align: center;
+}
+
+.t28-logo img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.t28-highlight {
+	color: #FDE047; /* Yellow-300 */
+}
+
+.t28-divider {
+	height: 5px;
+	width: 100px;
+	background-color: #FDE047;
+	margin: 0 auto 2.5rem;
+}
+
+/* Countdown timer styling */
+.t28-countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.t28-countdown-number {
+	font-family: 'Barlow Condensed', sans-serif;
+	font-weight: 800;
+	color: #ffffff;
+	line-height: 1;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+}
+
+.t28-countdown-label {
+	font-family: 'Inter', sans-serif;
+	text-transform: uppercase;
+	font-size: 0.7rem;
+	letter-spacing: 0.15em;
+	color: #9CA3AF;
+    margin-top: 0.5rem;
+}
+
+/* Subscription form styling */
+.t28-subscription {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.t28-subscription-prompt {
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #9CA3AF;
+    font-size: 1.2rem;
+}
+
+.t28-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+    .t28-form {
+        flex-direction: row;
+    }
+}
+
+.t28-input {
+	background: transparent;
+	border: 1px solid #4B5563;
+	color: #ffffff;
+	transition: all 0.3s ease;
+    padding: 1rem;
+    border-radius: 6px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.t28-input::placeholder {
+	color: #9CA3AF;
+}
+
+.t28-input:focus {
+	outline: none;
+	border-color: #FDE047;
+	background: rgba(253, 224, 71, 0.05);
+}
+
+.t28-submit {
+	background-color: #FDE047;
+	color: #000;
+	border: none;
+	transition: all 0.3s ease;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.t28-submit:hover {
+	background-color: #fff;
+}
+
+/* Social Icons */
+.t28-social {
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 0;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.t28-social a {
+    color: #FFF;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+}
+
+.t28-social a:hover {
+    color: #FDE047;
+    transform: translateY(-2px);
+}

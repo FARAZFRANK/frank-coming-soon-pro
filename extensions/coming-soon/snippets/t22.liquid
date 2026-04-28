@@ -1,0 +1,90 @@
+<div class="template-twenty-two-container csmm-main-bg">
+  <canvas id="confetti-canvas"></canvas>
+  <main class="t22-card">
+    {% if logo_to_show != blank %}<div class="t22-logo"><img src="{{ logo_to_show }}" alt="Logo" width="200" height="60" loading="lazy" style="height: 60px; width: auto; object-fit: contain; margin: 0 auto 1.5rem;"></div>{% endif %}
+
+    <p class="t22-subtitle">Get Ready To</p>
+    <h1 class="t22-title">{% if s.title == nil %}Party Time{% else %}{{ s.title }}{% endif %}</h1>
+    <p class="t22-description">{% if s.description == nil %}Join us for an unforgettable launch celebration!{% else %}{{ s.description }}{% endif %}</p>{% if s.countdownDate != blank %}<div class="t22-countdown">
+        <div class="t22-countdown-box">
+          <div class="t22-countdown-number" id="days">00</div>
+          <div class="t22-countdown-label">Days</div>
+        </div>
+        <div class="t22-countdown-box">
+          <div class="t22-countdown-number" id="hours">00</div>
+          <div class="t22-countdown-label">Hours</div>
+        </div>
+        <div class="t22-countdown-box">
+          <div class="t22-countdown-number" id="minutes">00</div>
+          <div class="t22-countdown-label">Mins</div>
+        </div>
+        <div class="t22-countdown-box">
+          <div class="t22-countdown-number" id="seconds">00</div>
+          <div class="t22-countdown-label">Secs</div>
+        </div>
+      </div>{% endif %}<div class="t22-subscription">
+      <p class="t22-form-prompt">Don't miss the party!</p>
+      <form class="t22-form">
+        <input type="email" placeholder="Enter your email" class="t22-input" required>
+        <button type="submit" class="t22-submit">Get on the list</button>
+      </form>
+    </div>
+
+    <ul class="t22-social">{% render 'cs-social', s: s %}</ul>
+  </main>
+
+  <script>
+    (function() {
+      const canvas = document.getElementById('confetti-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+      let pieces = [];
+      const colors = ['#FFD700', '#F06292', '#4FC3F7', '#AED581', '#BA68C8'];
+
+      class Piece {
+        constructor() {
+          this.x = Math.random() * w;
+          this.y = Math.random() * h - h;
+          this.size = Math.random() * 8 + 4;
+          this.color = colors[Math.floor(Math.random() * colors.length)];
+          this.speed = Math.random() * 2 + 1;
+          this.rotation = Math.random() * 360;
+          this.spin = Math.random() < 0.5 ? -1 : 1;
+        }
+        update() {
+          this.y += this.speed;
+          this.rotation += this.spin * 2;
+          if (this.y > h) {
+            this.y = -20;
+            this.x = Math.random() * w;
+          }
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rotation * Math.PI / 180);
+          ctx.fillStyle = this.color;
+          ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+          ctx.restore();
+        }
+      }
+
+      for(let i=0; i<150; i++) pieces.push(new Piece());
+
+      function loop() {
+        ctx.clearRect(0,0,w,h);
+        pieces.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(loop);
+      }
+      loop();
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+    })();
+  </script>
+</div>
+
