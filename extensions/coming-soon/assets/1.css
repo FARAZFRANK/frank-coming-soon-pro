@@ -1,245 +1,165 @@
-/* Template 1 - Professional Metropolis Overlay */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Outfit:wght@300;400;600&display=swap');
-
-.template-one-container {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #000;
-  color: #fff;
-  overflow: hidden;
+.template-1-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #121212;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.template-one-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
-  z-index: 2;
+.t1-header {
+    padding: 20px 5%;
+    background: #fff;
 }
 
-.home-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: transparent !important;
-  padding: 0;
-  margin: 0;
-  z-index: 1;
+.t1-header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.home-particles canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.t1-store-name {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    color: #121212;
+    letter-spacing: 0.05em;
 }
 
-.s-home--particles {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+.t1-logo-img {
+    max-height: 60px;
+    max-width: 200px;
+    object-fit: contain;
 }
 
-.home-logo {
-  position: relative;
-  margin-bottom: 30px;
-  z-index: 10;
+.t1-icon-padlock {
+    width: 14px;
+    height: 14px;
 }
 
-.home-logo img {
-  width: auto;
-  height: 80px;
-  object-fit: contain;
+.t1-main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #e5e5e5;
 }
 
-/* Home Content */
-.home-content {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
-  padding: 8rem 1.5rem;
-  position: relative;
-  z-index: 5;
-  text-align: center;
+.t1-card {
+    background: #ffffff;
+    padding: 50px 30px;
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
 }
 
-.home-content h3 {
-  font-size: 1.3rem;
-  line-height: 1.3;
-  text-transform: uppercase;
-  letter-spacing: .4rem;
-  color: #fff;
-  margin-bottom: 2rem;
-  opacity: 0.8;
+.t1-title {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    margin-top: 0;
+    color: #121212;
+    letter-spacing: 0.04em;
 }
 
-.home-content h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(3rem, 10vw, 6.4rem);
-  line-height: 1.1;
-  color: #FFFFFF;
-  letter-spacing: -2px;
-  margin-bottom: 2.5rem;
-  font-weight: 800;
-
+.t1-desc {
+    font-size: 15px;
+    color: #121212;
+    margin-bottom: 30px;
+    line-height: 1.6;
 }
 
-.home-content__text p {
-  font-family: 'Outfit', sans-serif;
-  font-size: 16px;
-  color: #fff;
-  max-width: 800px;
-  margin: 0 auto 3rem;
-  line-height: 1.7;
+.t1-form-wrapper {
+    max-width: 360px;
+    margin: 0 auto;
 }
 
-/* Subscription Form */
-.home-content__subscribe {
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto 4rem;
-  position: relative;
-}
-
-.mc-form {
-  display: flex;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.mc-form input[type="email"] {
-  flex: 1;
-  height: 4rem;
-  padding: 0 1.5rem;
-  background: transparent;
-  border: none;
-  color: #FFFFFF;
-  font-size: 1.5rem;
-}
-
-.mc-form input[type="email"]::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.mc-form input[type="submit"],
-.mc-form button {
-  padding: 0 2rem;
-  background: #e9127b;
-  color: #fff;
-  border: none;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.mc-form button:hover {
-  background: #c30f67;
-}
-
-/* Countdown */
-.home-content__counter {
-  margin-bottom: 4rem;
-  display: flex !important;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.home-content__counter .time {
-  color: #FFFFFF;
-  font-size: 2.8rem;
-  font-weight: 800;
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-}
-
-.home-content__counter .time span {
-  font-family: 'Outfit', sans-serif;
-  color: #FFFFFF;
-  font-size: 1.4rem;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-
-/* Social Menu */
-.home-social {
-  list-style: none;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  right: 3rem;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  z-index: 10;
-}
-
-.home-social a {
-  color: #FFFFFF;
-  transition: all 0.3s ease;
-  font-size: 2rem;
-}
-
-.home-social li:hover a {
-  opacity: 1;
-  color: #e9127b;
-}
-
-/* Responsive */
-@media only screen and (max-width: 1100px) {
-  .home-social {
+.t1-input-group {
+    display: flex;
     position: relative;
-    flex-direction: row;
+    align-items: center;
+    border: 1px solid #121212;
+}
+
+.t1-input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: none;
+    font-size: 14px;
+    background: transparent;
+    color: #121212;
+    outline: none;
+    font-family: inherit;
+}
+
+.t1-input:focus {
+    outline: 2px solid #121212;
+    outline-offset: -2px;
+}
+
+.t1-submit {
+    position: absolute;
     right: 0;
     top: 0;
-    transform: none;
-    margin-top: 2rem;
-    justify-content: center;
-  }
-
-  .home-content {
-    padding: 4rem 1.5rem;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .home-content h1 {
-    font-size: 2.8rem;
-  }
-
-  .mc-form {
-    flex-direction: column;
+    bottom: 0;
     background: none;
     border: none;
-  }
+    cursor: pointer;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #121212;
+}
 
-  .mc-form input[type="email"] {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 1rem;
-    border-radius: 4px;
-    width: 100%;
-  }
+.t1-submit svg {
+    width: 16px;
+    height: 16px;
+}
 
-  .mc-form button {
-    width: 100%;
-    height: 4rem;
-    border-radius: 4px;
-  }
+.t1-footer {
+    padding: 40px 20px;
+    text-align: center;
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.t1-footer-inner p {
+    font-size: 13px;
+    color: rgba(18, 18, 18, 0.75);
+    margin: 8px 0;
+}
+
+.t1-owner-link a {
+    color: rgba(18, 18, 18, 0.75);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.t1-social {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.t1-social a {
+    color: #121212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.t1-social svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
 }

@@ -33,6 +33,7 @@ import Template28 from "../templates/Template28";
 import Template29 from "../templates/Template29";
 import Template30 from "../templates/Template30";
 import Template31 from "../templates/Template31";
+import Template32 from "../templates/Template32";
 
 const templateMap = {
   template_1: Template1,
@@ -66,6 +67,7 @@ const templateMap = {
   template_29: Template29,
   template_30: Template30,
   template_31: Template31,
+  template_32: Template32,
 };
 
 export default function TemplateViewer({ settings }) {
@@ -108,7 +110,7 @@ export default function TemplateViewer({ settings }) {
 
   const templateIdStr = String(templateId || "template_1");
   const ActiveTemplate = templateMap[templateIdStr] || Template1;
-  const baseWidth = 1200; 
+  const baseWidth = 1200;
   const scale = containerWidth > 0 ? containerWidth / baseWidth : 0.8;
 
   if (!settings || Object.keys(settings).length === 0) {
@@ -119,8 +121,8 @@ export default function TemplateViewer({ settings }) {
     );
   }
 
-  const customFontLink = settings.customFont && settings.customFont !== 'Inter' 
-    ? `https://fonts.googleapis.com/css2?family=${settings.customFont.replace(/ /g, '+')}:wght@300;400;500;600;700&display=swap` 
+  const customFontLink = settings.customFont && settings.customFont !== 'Inter'
+    ? `https://fonts.googleapis.com/css2?family=${settings.customFont.replace(/ /g, '+')}:wght@300;400;500;600;700&display=swap`
     : null;
 
   return (
@@ -147,42 +149,42 @@ export default function TemplateViewer({ settings }) {
           `}</style>
         )}
         <div id="csmm-preview-container" style={{ flex: 1, display: "flex", flexDirection: "column", height: "100%" }}>
-        {settings.showHeader && (
-          <div style={{
-            width: "100%",
-            height: "80px",
-            backgroundColor: "#fff",
-            borderBottom: "1px solid #e1e3e5",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "0 40px",
-            zIndex: 9999,
-            position: "relative",
-            flexShrink: 0
-          }}>
-            <div style={{ display: "flex", gap: "24px", fontSize: "14px", fontWeight: "600", color: "#202223" }}>
-              <span>Home</span>
-              <span>Catalog</span>
-              <span>Contact</span>
+          {settings.showHeader && (
+            <div style={{
+              width: "100%",
+              height: "80px",
+              backgroundColor: "#fff",
+              borderBottom: "1px solid #e1e3e5",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0 40px",
+              zIndex: 9999,
+              position: "relative",
+              flexShrink: 0
+            }}>
+              <div style={{ display: "flex", gap: "24px", fontSize: "14px", fontWeight: "600", color: "#202223" }}>
+                <span>Home</span>
+                <span>Catalog</span>
+                <span>Contact</span>
+              </div>
+              <div style={{ fontWeight: "700", fontSize: "20px", color: "#202223", letterSpacing: "1px", textTransform: "uppercase" }}>
+                Your Store
+              </div>
+              <div style={{ display: "flex", gap: "20px", color: "#202223" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" /></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
+              </div>
             </div>
-            <div style={{ fontWeight: "700", fontSize: "20px", color: "#202223", letterSpacing: "1px", textTransform: "uppercase" }}>
-              Your Store
-            </div>
-            <div style={{ display: "flex", gap: "20px", color: "#202223" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" /></svg>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
-            </div>
+          )}
+          <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
+            <ActiveTemplate
+              settings={settings}
+              timeLeft={timeLeft}
+              isAdmin={true}
+            />
           </div>
-        )}
-        <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
-          <ActiveTemplate 
-            settings={settings} 
-            timeLeft={timeLeft} 
-            isAdmin={true}
-          />
-        </div>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ handle = "coming-soon-maintenance-page"
 automatically_update_urls_on_dev = true
 
 [webhooks]
-api_version = "2026-07"
+api_version = "2025-01"
 
   [[webhooks.subscriptions]]
   topics = [ "app/uninstalled" ]
@@ -39,3 +39,4 @@ redirect_urls = [ "https://coming-soon-maintenance-page.fly.dev/auth/callback" ]
 url = "https://coming-soon-maintenance-page.fly.dev"
 subpath = "cs-api"
 prefix = "apps"
+

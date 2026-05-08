@@ -1,0 +1,28 @@
+<div class="template-32-container csmm-main-bg" style="background-color: {% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}transparent{% else %}#f7f7f7{% endif %}; background-image: url('{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}{{ s.bgImageUrl }}{% endif %}');">
+    <main class="home-content">
+        <div class="home-content__main">
+            <!-- Logo -->{% if logo_to_show != blank %}<div class="home-logo">
+                <img src="{{ logo_to_show }}" alt="Logo" class="t32-logo-img" width="150" height="150" loading="lazy">
+            </div>{% endif %}
+
+            <h1 class="t32-title">{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
+            <div class="home-content__text">
+                <p>{% if s.description == nil %}We are currently working hard to create a new and exciting experience for you.{% else %}{{ s.description }}{% endif %}</p>
+            </div>
+
+            <!-- Dino Game Area -->
+            <div class="dino-game-wrapper">
+                <p class="game-instruction">Press SPACE or TAP to Jump!</p>
+                <canvas id="dinoCanvas" width="800" height="200"></canvas>
+                <div id="gameOverText" style="display:none;">GAME OVER<br><span style="font-size:12px;">Press SPACE to Restart</span></div>
+                <div id="scoreText">Score: 0</div>
+            </div>
+            </div>
+
+
+        <!-- Social Icons -->
+        <ul class="home-social">{% render 'cs-social', s: s %}</ul>
+    </main>
+</div>
+
+<script src="{{ '32.js' | asset_url }}" defer="defer"></script>

@@ -125,21 +125,10 @@
         {%- when '29' %}{% render 't29', s: s, logo_to_show: logo_to_show %}
         {%- when '30' %}{% render 't30', s: s, logo_to_show: logo_to_show %}
         {%- when '31' %}{% render 't31', s: s, logo_to_show: logo_to_show %}
+        {%- when '32' %}{% render 't32', s: s, logo_to_show: logo_to_show %}
 
         {%- else -%}
-          {% assign t_n = s.templateId | split: '_' | last %}
-          <div class="template-one-container" style="background-image: url('{% if s.bgImageUrl != blank %}{{ s.bgImageUrl }}{% else %}{{ t_n | append: '.png' | asset_url }}{% endif %}'); background-size: cover; background-position: center;">
-            <div class="home-content">
-               {% if s.logoUrl != blank %}<div class="home-logo"><img src="{{ s.logoUrl }}" alt="Logo" width="150" height="150"></div>{% endif %}
-               <h1>{{ s.title }}</h1>
-               <div class="home-content__clock"><div class="time" id="days">00 <span>D</span></div><div class="time" id="hours">00 <span>H</span></div><div class="time" id="minutes">00 <span>M</span></div><div class="time" id="seconds">00 <span>S</span></div></div>
-               <div className="cs-description">{{ s.description }}</div>
-               <form class="subscribe-form"><input type="email" placeholder="Email Address" required><button type="submit">NOTIFY ME</button></form>
-                <ul class="home-social">
-                   {% render 'cs-social', s: s %}
-                </ul>
-            </div>
-          </div>
+          {% render 't1', s: s, logo_to_show: logo_to_show %}
       {%- endcase -%}
     </div>
     </template>

@@ -3,19 +3,25 @@ import { authenticate } from "../shopify.server";
 import { MONTHLY_PLAN } from "../constants";
 
 export const loader = async ({ request }) => {
-  const { billing } = await authenticate.admin(request);
+  const { billing, admin } = await authenticate.admin(request);
+  
+  // Check if it's a development store
+  const shopResponse = await admin.graphql(`{ shop { name plan { partnerDevelopment } } }`);
+  const shopData = await shopResponse.json();
+  const isDevStore = shopData.data?.shop?.plan?.partnerDevelopment || shopData.data?.shop?.name?.includes("dev");
+  const isTest = isDevStore;
 
   try {
     const billingCheck = await billing.check({
       plans: [MONTHLY_PLAN],
-      isTest: true,
+      isTest,
     });
 
     if (billingCheck.hasActivePayment) {
       const subscriptionId = billingCheck.appSubscriptions[0].id;
       await billing.cancel({
         subscriptionId,
-        isTest: true,
+        isTest,
         prorate: true,
       });
       console.log("Subscription cancelled successfully:", subscriptionId);
@@ -24,10 +30,5 @@ export const loader = async ({ request }) => {
     console.error("Downgrade failed:", error);
   }
 
-  const { session, admin } = await authenticate.admin(request);
-  const shop = session.shop;
-  const shopName = shop.replace(".myshopify.com", "");
-  const appHandle = "coming-soon-maintenance-page";
-
-  return redirect(`https://admin.shopify.com/store/${shopName}/apps/${appHandle}/app/pricing`);
+  return redirect(`/app/pricing`);
 };

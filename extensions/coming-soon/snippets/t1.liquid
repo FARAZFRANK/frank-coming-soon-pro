@@ -1,37 +1,38 @@
-<div class="template-one-container csmm-main-bg" style="background-image: url('{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}{{ s.bgImageUrl }}{% else %}{{ 'temp-1.png' | asset_url }}{% endif %}');">
-    <div class="home-particles">&nbsp;</div>
+{{ '1.css' | asset_url | stylesheet_tag }}
 
-    <main class="home-content">
-        <div class="home-content__main">
-            <!-- Logo -->{% if logo_to_show != blank %}<div class="home-logo">
-                <img src="{{ logo_to_show }}" alt="Logo" class="t29-logo-img" width="200" height="200" loading="lazy">
-            </div>{% endif %}
-            <h3>{% if s.countdownTitle == nil %}Launching In...{% else %}{{ s.countdownTitle }}{% endif %}</h3>
+{% assign default_bg = 'https://cdn.shopify.com/s/files/1/0602/6405/4969/files/password-page-background.jpg' %}
+{% assign main_bg = default_bg %}
+{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}
+  {% assign main_bg = s.bgImageUrl %}
+{% endif %}
 
-            <!-- Countdown Timer -->
-            <div class="home-content__counter">
-                <div class="time" id="days">00 <span>D</span></div>
-                <div class="time" id="hours">00 <span>H</span></div>
-                <div class="time" id="minutes">00 <span>M</span></div>
-                <div class="time" id="seconds">00 <span>S</span></div>
-            </div>
+<div class="template-1-container csmm-main-bg">
+  <main class="t1-main" style="background-image: url('{{ main_bg }}');">
+    <div class="t1-card">
+      <h1 class="t1-title">{% if s.title == nil %}Opening soon{% else %}{{ s.title }}{% endif %}</h1>
+      <div class="t1-desc">
+        <p>{% if s.description == nil %}Be the first to know when we launch.{% else %}{{ s.description }}{% endif %}</p>
+      </div>
 
-            <h1>{% if s.title == nil %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
-            
-            <div class="home-content__text">
-                <p>{% if s.description == nil %}We are currently working hard to create a new and exciting experience for you.{% else %}{{ s.description }}{% endif %}</p>
-            </div>
+      <div class="t1-form-wrapper">
+        <form class="t1-form" id="t1-subscribe-form" method="post" onsubmit="handleSubscribe(event, this)">
+          <div class="t1-input-group">
+            <input type="email" name="email" class="t1-input" placeholder="Email" required>
+            <button type="submit" class="t1-submit" aria-label="Subscribe">
+              <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path></svg>
+            </button>
+          </div>
+          <div class="csmm-form-message" style="display:none; margin-top: 10px; font-size: 14px;"></div>
+        </form>
+      </div>
+      
+      <ul class="t1-social">{% render 'cs-social', s: s %}</ul>
+    </div>
+  </main>
 
-            <!-- Subscription Form -->
-            <div class="home-content__subscribe">
-                <form class="mc-form">
-                    <input type="email" placeholder="Email Address" required>
-                    <button type="submit">NOTIFY ME</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Social Icons -->
-        <ul class="home-social">{% render 'cs-social', s: s %}</ul>
-    </main>
+  <footer class="t1-footer">
+    <div class="t1-footer-inner">
+      <p>This shop will be powered by <strong>Shopify</strong></p>
+    </div>
+  </footer>
 </div>

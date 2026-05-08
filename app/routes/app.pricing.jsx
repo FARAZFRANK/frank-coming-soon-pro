@@ -21,35 +21,43 @@ import { authenticate } from "../shopify.server";
 import { MONTHLY_PLAN } from "../constants";
 
 export const loader = async ({ request }) => {
-  const { billing } = await authenticate.admin(request);
+  const { billing, admin } = await authenticate.admin(request);
+
+  // Check if it's a development store
+  const shopResponse = await admin.graphql(`{ shop { name plan { partnerDevelopment } } }`);
+  const shopData = await shopResponse.json();
+  const isDevStore = shopData.data?.shop?.plan?.partnerDevelopment || shopData.data?.shop?.name?.includes("dev");
+  const isTest = isDevStore;
 
   try {
     const billingCheck = await billing.check({
       plans: [MONTHLY_PLAN],
-      isTest: true,
+      isTest,
     });
 
     let isPro = billingCheck.hasActivePayment;
 
-    // Double check real payments if test payment is not found
+    // Fallback: if isTest didn't match, try the other one just in case
     if (!isPro) {
-      const realCheck = await billing.check({
+      const fallbackCheck = await billing.check({
         plans: [MONTHLY_PLAN],
-        isTest: false,
+        isTest: !isTest,
       });
-      isPro = realCheck.hasActivePayment;
+      isPro = fallbackCheck.hasActivePayment;
     }
 
-
     return json({
-      isPro: isPro,
+      isPro,
       billingError: null,
     });
   } catch (error) {
     console.error("Billing API error in Pricing loader:", error.message);
+    
+    // During transition, the API might be temporarily unavailable or return error
+    // We should not block the user with a scary banner if we can avoid it.
     return json({
       isPro: false,
-      billingError: "Billing API is unavailable. Ensure your app has 'Public distribution' in the Partner Dashboard.",
+      billingError: error.message?.includes("not found") ? null : "Billing API is currently unavailable. Please try again in a few moments.",
     });
   }
 };
@@ -59,6 +67,8 @@ export default function Pricing() {
   const location = useLocation();
   const navigation = useNavigation();
   const isUpgrading = navigation.state === "loading" && navigation.location.pathname === "/app/upgrade";
+  const isDowngrading = navigation.state === "loading" && navigation.location.pathname === "/app/downgrade";
+  const isLoading = isUpgrading || isDowngrading;
 
   const plans = [
     {
@@ -81,7 +91,8 @@ export default function Pricing() {
       action: {
         content: isPro ? "Downgrade to Free" : "Current Plan",
         url: isPro ? `/app/downgrade${location.search}` : null,
-        disabled: !isPro || isUpgrading,
+        disabled: !isPro || isLoading,
+        loading: isDowngrading,
       },
     },
     {
@@ -108,7 +119,7 @@ export default function Pricing() {
       action: {
         content: isPro ? "Current Plan" : "Start 15-Day Free Trial",
         url: isPro ? null : `/app/upgrade${location.search}`,
-        disabled: isPro || isUpgrading,
+        disabled: isPro || isLoading,
         loading: isUpgrading,
       },
     },

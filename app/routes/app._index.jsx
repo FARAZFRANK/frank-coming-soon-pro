@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import { useLoaderData, useSubmit, useNavigation, useActionData, Await } from "@remix-run/react";
-import { json, redirect } from "@remix-run/server-runtime";
+import { json, defer, redirect } from "@remix-run/server-runtime";
 import {
   Page,
   Text,
@@ -226,36 +226,39 @@ export const loader = async ({ request }) => {
   // Check subscription status
   let isPro = false;
   try {
+    const shopResponse = await admin.graphql(`{ shop { name plan { partnerDevelopment } } }`);
+    const shopData = await shopResponse.json();
+    const isDevStore = shopData.data?.shop?.plan?.partnerDevelopment || shopData.data?.shop?.name?.includes("dev");
+    const isTest = isDevStore;
+
     const billingCheck = await billing.check({
       plans: [MONTHLY_PLAN],
-      isTest: true,
+      isTest,
     });
     isPro = billingCheck.hasActivePayment;
 
-    // Fallback: If no active payment found, check for real (non-test) subscriptions too
-    // This handles the case where the app is live or being reviewed.
     if (!isPro) {
-      const realCheck = await billing.check({
+      const fallbackCheck = await billing.check({
         plans: [MONTHLY_PLAN],
-        isTest: false,
+        isTest: !isTest,
       });
-      isPro = realCheck.hasActivePayment;
+      isPro = fallbackCheck.hasActivePayment;
     }
   } catch (error) {
     console.error("Billing API error in Index loader:", error.message);
     isPro = false;
   }
 
-  // Return json — wait for all data on server to avoid bundle leaks
-  return json({
+  // Return defer to stream data and avoid blocking the initial render
+  return defer({
     initialSettings: settings,
     allImages,
     allVideos,
     shop: session.shop,
     apiKey: (typeof process !== "undefined" ? process.env.SHOPIFY_API_KEY : "") || "0955e12f5de833db49e2a6d2fd067a9e",
-    allPages: await pagesPromise,
-    allProducts: await productsPromise,
-    appEmbedData: await appEmbedPromise,
+    allPages: pagesPromise,
+    allProducts: productsPromise,
+    appEmbedData: appEmbedPromise,
     isPro,
   });
 };
@@ -856,6 +859,7 @@ export default function AppIndex() {
     { id: "template_29", img: "/templates/29.png" },
     { id: "template_30", img: "/templates/30.png" },
     { id: "template_31", img: "/templates/31.png" },
+    { id: "template_32", img: "/templates/32.png" },
   ].map((t) => ({
     ...t,
     name: t.id.split('_')[1],
@@ -1090,7 +1094,7 @@ export default function AppIndex() {
                               <Text as="h2" variant="headingSm">Template Design</Text>
                               <Badge>{templates.length} templates</Badge>
                             </InlineStack>
-                            <Text variant="bodySm" tone="subdued">Choose a design for your page. Templates 1, 4, 6, 10, and 15</Text>
+                            <Text variant="bodySm" tone="subdued">Choose a design for your page. Templates 1, 4, 6, 10, and 15 (FREE)</Text>
                           </BlockStack>
                         </InlineStack>
                         <Divider />

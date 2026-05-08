@@ -15,16 +15,17 @@ export const loader = async ({ request }) => {
   const shopData = await shopResponse.json();
   const isDevStore = shopData.data?.shop?.plan?.partnerDevelopment || shopData.data?.shop?.name?.includes("dev");
 
+  const isTest = isDevStore;
   const returnUrl = `https://admin.shopify.com/store/${shopName}/apps/${appHandle}/app/pricing`;
 
   try {
     await billing.require({
       plans: [MONTHLY_PLAN],
+      isTest,
       onFailure: async () => {
-        console.log("Billing failed, requesting plan:", MONTHLY_PLAN, "isTest:", isDevStore || true);
         return billing.request({
           plan: MONTHLY_PLAN,
-          isTest: true, // Always true for development/testing
+          isTest,
           returnUrl,
         });
       },
@@ -33,9 +34,9 @@ export const loader = async ({ request }) => {
     if (error instanceof Response) {
       throw error;
     }
-    console.error("Upgrade logic failed details:", error);
-    return redirect(`/app?error=${encodeURIComponent(error.message || "Unknown error")}`);
+    console.error("Upgrade logic failed:", error);
+    return redirect(`/app/pricing?error=${encodeURIComponent(error.message || "Unknown error")}`);
   }
 
-  return redirect(`https://admin.shopify.com/store/${shopName}/apps/${appHandle}/app/pricing`);
+  return redirect(`/app/pricing`);
 };

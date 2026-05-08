@@ -29,6 +29,7 @@ const shopify = shopifyApp({
         },
       ],
       trialDays: 15,
+      replacementBehavior: "APPLY_IMMEDIATELY",
     },
   },
   future: {

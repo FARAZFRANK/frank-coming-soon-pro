@@ -26,12 +26,14 @@ const BrandingSection = ({ formState, setFormState, allImages, allVideos }) => {
         </InlineStack>
         <Divider />
         
-        <MediaPicker
-          label="Logo"
-          value={formState.logoUrl || ""}
-          onChange={(v) => setFormState({ ...formState, logoUrl: v })}
-          files={allImages}
-        />
+        {formState.templateId !== "template_1" && (
+          <MediaPicker
+            label="Logo"
+            value={formState.logoUrl || ""}
+            onChange={(v) => setFormState({ ...formState, logoUrl: v })}
+            files={allImages}
+          />
+        )}
 
         {!isBgImageExcluded && (
           <MediaPicker

@@ -1,205 +1,191 @@
 import React from "react";
 import { StorefrontSocialLinks } from "../SocialIcons";
 
-export default function Template1({ settings, timeLeft }) {
-  const { title, description, logoUrl, bgImageUrl, socialLinks, countdownTitle } = settings;
+export default function Template1({ settings }) {
+  const { title, description, logoUrl, bgImageUrl, socialLinks } = settings;
 
-  const pad = (n) => String(Math.max(0, n)).padStart(2, "0");
+  const defaultBg = "https://cdn.shopify.com/s/files/1/0602/6405/4969/files/password-page-background.jpg";
+  const mainBg = bgImageUrl && bgImageUrl !== 'null' && bgImageUrl !== '' ? bgImageUrl : defaultBg;
 
   const templateOneStyles = `
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Outfit:wght@300;400;600&display=swap');
-
-    .template-one-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background-color: #000;
-      color: #fff;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .template-one-container::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
-      z-index: 2;
-    }
-
-    .home-particles {
-      position: absolute;
-      inset: 0;
-      opacity: 0.2;
-      z-index: 1;
-      background: transparent;
-    }
-
-    .home-content {
-      position: relative;
-      z-index: 5;
-      width: 100%;
-      max-width: 900px;
-      padding: 40px;
-      text-align: center;
+    .template-1-container {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #121212;
+      background: #fff;
       display: flex;
       flex-direction: column;
+      height: 100%;
+      min-height: 500px;
+    }
+    .t1-header {
+      padding: 20px 5%;
+      background: #fff;
+    }
+    .t1-header-inner {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-
-    .home-logo {
-      position: relative;
-      margin-bottom: 30px;
-      z-index: 10;
+    .t1-store-name {
+      font-size: 22px;
+      font-weight: 400;
+      margin: 0;
+      color: #121212;
+      letter-spacing: 0.05em;
     }
-
-    .home-logo img {
-      height: 48px;
-      width: auto;
+    .t1-logo-img {
+      max-height: 60px;
+      max-width: 200px;
       object-fit: contain;
     }
-
-    .home-content h3 {
+    .t1-password-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      margin-bottom: 24px;
-      opacity: 0.8;
+      color: #121212;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      cursor: pointer;
     }
-
-    .home-content h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 64px;
-      font-weight: 800;
-      line-height: 1.1;
-      margin: 0 0 32px;
-      letter-spacing: -1px;
+    .t1-icon-padlock {
+      width: 14px;
+      height: 14px;
     }
-
-    .home-content p {
-      font-family: 'Outfit', sans-serif;
-      font-size: 16px;
-      max-width: 600px;
-      margin: 0 auto 32px;
+    .t1-main {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #e5e5e5;
+    }
+    .t1-card {
+      background: #ffffff;
+      padding: 50px 30px;
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+    }
+    .t1-title {
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      margin-top: 0;
+      color: #121212;
+      letter-spacing: 0.04em;
+    }
+    .t1-desc {
+      font-size: 15px;
+      color: #121212;
+      margin-bottom: 30px;
       line-height: 1.6;
     }
-
-    .home-content__clock {
-      display: flex;
-      gap: 24px;
-      margin-bottom: 40px;
-      justify-content: center;
+    .t1-form-wrapper {
+      max-width: 360px;
+      margin: 0 auto;
     }
-
-    .time {
-      font-size: 32px;
-      font-weight: 800;
+    .t1-input-group {
       display: flex;
-      align-items: baseline;
-      gap: 4px;
+      position: relative;
+      align-items: center;
+      border: 1px solid #121212;
     }
-
-    .time span {
-      font-family: 'Outfit', sans-serif;
-      font-size: 14px;
-      opacity: 0.9;
-      text-transform: uppercase;
-      font-weight: 400;
-    }
-
-    .mc-form {
-      display: flex;
+    .t1-input {
       width: 100%;
-      max-width: 420px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .mc-form input {
-      flex: 1;
-      padding: 12px 20px;
-      background: transparent;
+      padding: 12px 40px 12px 15px;
       border: none;
-      color: #fff;
       font-size: 14px;
+      background: transparent;
+      color: #121212;
+      outline: none;
+      font-family: inherit;
     }
-
-    .mc-form button {
-      padding: 0 24px;
-      background: #e9127b;
-      color: #fff;
-      border: none;
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-
-    .home-social {
+    .t1-submit {
       position: absolute;
-      right: 40px;
-      top: 50%;
-      transform: translateY(-50%);
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 15px;
       display: flex;
-      flex-direction: column;
-      gap: 30px;
+      align-items: center;
+      justify-content: center;
+      color: #121212;
+    }
+    .t1-submit svg {
+      width: 16px;
+      height: 16px;
+    }
+    .t1-footer {
+      padding: 40px 20px;
+      text-align: center;
+      background: #fff;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .t1-footer-inner p {
+      font-size: 13px;
+      color: rgba(18,18,18,0.75);
+      margin: 8px 0;
+    }
+    .t1-social {
       list-style: none;
       padding: 0;
+      margin: 30px 0 0 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
     }
-
-    .home-social a {
-      color: #fff;
-      font-size: 25px;
-      transition: 0.3s;
+    .t1-social a {
+      color: #121212;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-    .home-social li:hover a {
-      opacity: 1;
-      color: #e9127b;
+    .t1-social svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
     }
   `;
 
   return (
-    <div className="template-one-container" style={{
-      backgroundImage: bgImageUrl && bgImageUrl !== "null" && bgImageUrl !== "" ? `url(${bgImageUrl})` : "url('/templates/temp-1.png')"
-    }}>
+    <div className="template-1-container">
       <style>{templateOneStyles}</style>
-      <div className="home-particles">&nbsp;</div>
+      <main className="t1-main" style={{ backgroundImage: `url('${mainBg}')` }}>
+        <div className="t1-card">
+          <h1 className="t1-title">{title === undefined || title === null ? "Opening soon" : title}</h1>
+          <div className="t1-desc">
+            <p>{description === undefined || description === null ? "Be the first to know when we launch." : description}</p>
+          </div>
 
-      <div className="home-content">
-        <div className="home-logo">
-          <img src={logoUrl && logoUrl !== "" && logoUrl !== "null" ? logoUrl : "/templates/logo-w.png"} alt="Logo" />
+          <div className="t1-form-wrapper">
+            <div className="t1-input-group">
+              <input type="email" name="email" className="t1-input" placeholder="Email" readOnly />
+              <button type="button" className="t1-submit" aria-label="Subscribe">
+                <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" className="icon icon-arrow" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <ul className="t1-social">
+            <StorefrontSocialLinks links={socialLinks} />
+          </ul>
         </div>
-        {(countdownTitle === undefined || countdownTitle === null) ? <h3 className="t1-subtitle">Launching In...</h3> : countdownTitle !== "" && <h3 className="t1-subtitle">{countdownTitle}</h3>}
+      </main>
 
-        <div className="home-content__clock">
-          <div className="time">{pad(timeLeft.days)} <span>D</span></div>
-          <div className="time">{pad(timeLeft.hours)} <span>H</span></div>
-          <div className="time">{pad(timeLeft.minutes)} <span>M</span></div>
-          <div className="time">{pad(timeLeft.seconds)} <span>S</span></div>
+      <footer className="t1-footer">
+        <div className="t1-footer-inner">
+          <p>This shop will be powered by <strong>Shopify</strong></p>
         </div>
-
-        <h1>{(title === undefined || title === null) ? "Coming Soon" : title}</h1>
-        <p>{(description === undefined || description === null) ? "We are currently working hard to create a new and exciting experience for you." : description}</p>
-
-        <div className="mc-form">
-          <input type="email" placeholder="Email Address" readOnly />
-          <button>NOTIFY ME</button>
-        </div>
-
-        <ul className="home-social">
-          <StorefrontSocialLinks links={socialLinks} />
-        </ul>
-      </div>
+      </footer>
     </div>
   );
 }
