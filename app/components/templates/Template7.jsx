@@ -2,7 +2,7 @@ import React from "react";
 import { StorefrontSocialLinks } from "../SocialIcons";
 
 const Template7 = ({ settings, timeLeft }) => {
-  const { title, description, logoUrl, bgImageUrl, socialLinks } = settings;
+  const { title, description, socialLinks } = settings;
 
   const glassStyles = `
     .template-seven-preview {
@@ -49,12 +49,6 @@ const Template7 = ({ settings, timeLeft }) => {
       text-align: center;
       z-index: 5;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    }
-
-    .glass-logo {
-      height: 50px;
-      width: auto;
-      margin-bottom: 25px;
     }
 
     .glass-h1 {
@@ -172,11 +166,8 @@ const Template7 = ({ settings, timeLeft }) => {
     <div className="template-seven-preview">
       <style>{glassStyles}</style>
       <div className="mesh-gradient"></div>
-      
+
       <div class="glass-box">
-        {logoUrl && (
-          <img src={logoUrl} alt="Logo" className="glass-logo" style={{ height: "50px", width: "auto", objectFit: "contain", marginBottom: "25px" }} />
-        )}
         <h1 className="glass-h1">{title === undefined || title === null ? "Coming Soon" : title}</h1>
         <p className="glass-p">{description === undefined || description === null ? "We are currently working hard to create a new and exciting experience for you." : description}</p>
 

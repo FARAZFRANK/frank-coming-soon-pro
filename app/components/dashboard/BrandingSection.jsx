@@ -7,8 +7,9 @@ import styles from "../../styles/Dashboard.module.css";
 
 const BrandingSection = ({ formState, setFormState, allImages, allVideos }) => {
   // Exclude certain templates from media settings if they don't support it
-  const isMediaExcluded = ["template_4", "template_7", "template_8", "template_9", "template_10", "template_19", "template_22"].includes(formState.templateId);
-  const isBgImageExcluded = ["template_13", "template_14", "template_15", "template_16", "template_17", "template_18"].includes(formState.templateId);
+  const isMediaExcluded = ["template_4", "template_7", "template_8", "template_9", "template_10", "template_19", "template_20", "template_22"].includes(formState.templateId);
+  const isBgImageExcluded = ["template_13", "template_14", "template_15", "template_16", "template_17", "template_18", "template_24"].includes(formState.templateId);
+  const isVideoSupported = ["template_13", "template_14", "template_15", "template_16", "template_17", "template_18"].includes(formState.templateId);
 
   if (isMediaExcluded) return null;
 
@@ -54,14 +55,14 @@ const BrandingSection = ({ formState, setFormState, allImages, allVideos }) => {
           />
         )}
 
-        {isBgImageExcluded ? (
+        {isVideoSupported && (
           <VideoPicker
             label="Background Video URL (Direct Video File / .mp4)"
             value={formState.videoUrl || ""}
             onChange={(v) => setFormState({ ...formState, videoUrl: v })}
             files={allVideos}
           />
-        ) : null}
+        )}
       </BlockStack>
     </Card>
   );

@@ -4,20 +4,19 @@
     <main class="t29-main-content">
         <!-- Top Section -->
         <div class="t29-top-section">
-            {% if logo_to_show != blank and logo_to_show != 'null' %}
+            {% if s.logoUrl != blank and s.logoUrl != 'null' %}
               <div class="t29-logo-container">
-                <img src="{{ logo_to_show }}" alt="Logo" class="t29-logo-img" width="200" height="100" loading="lazy">
+                <img src="{{ logo_to_show }}" alt="Logo" class="t29-logo-img" width="200" height="100" loading="lazy" style="display: block; margin: 0 auto; object-fit: contain;">
               </div>
             {% else %}
               <div class="t29-logo-container">
-                <svg class="t29-logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="t29-logo-svg" style="height: 60px; width: 60px; margin: 0 auto; display: block;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#38A169" stroke-width="2"/>
                     <path d="M12 6V12L16 14" stroke="#2C5282" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
             {% endif %}
             <h1 class="t29-title">{% if s.title == nil %}Healthcare Reinvented{% else %}{{ s.title }}{% endif %}</h1>
-            <p class="t29-tagline">A new standard of healthcare is coming soon.</p>
             <div class="t29-divider"></div>
             <p class="t29-desc">
                 {% if s.description == nil %}Our clinic is currently under construction. Sign up to be the first to book appointments and receive health tips from our experts.{% else %}{{ s.description }}{% endif %}
@@ -46,7 +45,6 @@
 
         <!-- Subscription Form -->
         <div class="t29-subscription">
-            <p class="t29-subscription-prompt">Receive updates and opening day information.</p>
             <form class="t29-form">
                 <input type="email" placeholder="Enter your email address" class="t29-input" required>
                 <button type="submit" class="t29-submit">Keep Me Informed</button>

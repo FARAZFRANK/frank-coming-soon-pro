@@ -155,36 +155,44 @@
 }
 
 .t26-input {
-  flex-grow: 1;
-  background: rgba(26, 26, 26, 0.7);
-  border: 1px solid rgba(212, 167, 98, 0.4);
-  color: #fff;
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  outline: none;
+  flex-grow: 1 !important;
+  background: rgba(26, 26, 26, 0.75) !important;
+  border: 1px solid rgba(212, 167, 98, 0.4) !important;
+  color: #ffffff !important;
+  padding: 0 1.5rem !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.3s ease !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  height: 52px !important;
+}
+
+.t26-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .t26-input:focus {
-  border-color: #D4A762;
-  box-shadow: 0 0 10px rgba(212, 167, 98, 0.5);
+  border-color: #D4A762 !important;
+  box-shadow: 0 0 10px rgba(212, 167, 98, 0.5) !important;
 }
 
 .t26-submit {
-  background-color: #D4A762;
-  color: #1a1a1a;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
+  background-color: #D4A762 !important;
+  color: #1a1a1a !important;
+  border: none !important;
+  padding: 0 2rem !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.3s ease !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  height: 52px !important;
+  box-sizing: border-box !important;
 }
 
 .t26-submit:hover {
-  background-color: #F3EFE0;
-  transform: scale(1.05);
+  background-color: #F3EFE0 !important;
+  transform: scale(1.03) !important;
 }
 
 .t26-social {

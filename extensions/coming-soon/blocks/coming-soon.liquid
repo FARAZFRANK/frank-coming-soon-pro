@@ -32,13 +32,14 @@
     <link rel="stylesheet" href="{{ template_num | append: '.css' | asset_url }}" id="csmm-theme-css">
 
     <style id="csmm-styles">
-      {% if s.showHeader %}
-      header,.header,#shopify-section-header,.header-wrapper,.section-header,#shopify-section-sections--header,.sticky-header,[id*="header"],[class*="header"] {position:relative!important;z-index:10000000001!important;visibility:visible!important;opacity:1!important;}
+      {% if s.mode == 'MAINTENANCE' and s.showHeader %}
+      header,.header,#shopify-section-header,.header-wrapper,.section-header,#shopify-section-sections--header,.sticky-header,[id*="header"],[class*="header"] {z-index:10000000001!important;visibility:visible!important;opacity:1!important;}
+      #csmm-overlay {padding-top: 65px !important;}
       {% else %}
       header,.header,#shopify-section-header,.header-wrapper,.section-header,#shopify-section-sections--header,.sticky-header,[id*="header"],[class*="header"] {display:none!important;visibility:hidden!important;opacity:0!important;height:0!important;overflow:hidden!important;}
       {% endif %}
       #csmm-overlay {position:fixed!important;top:0!important;left:0!important;width:100vw!important;height:100vh!important;z-index:9999999999!important;background:#000!important;overflow-y:auto!important;visibility:visible!important;}
-      html.csmm-hide-body body { {% unless s.showHeader %}visibility:hidden!important;{% endunless %}overflow:hidden!important;height:100vh!important;}
+      html.csmm-hide-body body { {% unless s.mode == 'MAINTENANCE' and s.showHeader %}visibility:hidden!important;{% endunless %}overflow:hidden!important;height:100vh!important;}
       html.csmm-hide-body body > #csmm-overlay {visibility:visible!important;}
       .home-social li a {display:flex;align-items:center;justify-content:center;}
       [class*="template-"][class*="-container"] * {box-sizing:border-box;}

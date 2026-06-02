@@ -118,50 +118,45 @@ export default function Template28({ settings, timeLeft }) {
       margin: 0 auto;
     }
 
-    .t28-subscription-prompt {
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #9CA3AF;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
     .t28-form {
       display: flex;
       gap: 12px;
       flex-direction: column;
     }
 
-    @media (min-width: 480px) {
+    @media (min-width: 640px) {
       .t28-form {
         flex-direction: row;
       }
     }
 
     .t28-input {
-      flex-grow: 1;
-      background: transparent;
-      border: 1px solid #4B5563;
-      color: #fff;
-      padding: 12px 16px;
-      border-radius: 4px;
-      font-size: 14px;
-      text-align: center;
+      flex-grow: 1 !important;
+      background: transparent !important;
+      border: 1px solid #4B5563 !important;
+      color: #fff !important;
+      padding: 0 16px !important;
+      border-radius: 6px !important;
+      font-size: 14px !important;
+      text-align: center !important;
+      height: 48px !important;
+      box-sizing: border-box !important;
     }
 
     .t28-submit {
-      background-color: #FDE047;
-      color: #000;
-      border: none;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 12px 24px;
-      border-radius: 4px;
-      font-size: 13px;
-      white-space: nowrap;
-      cursor: pointer;
+      background-color: #FDE047 !important;
+      color: #000 !important;
+      border: none !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      padding: 0 24px !important;
+      border-radius: 6px !important;
+      font-size: 13px !important;
+      white-space: nowrap !important;
+      cursor: not-allowed !important;
+      height: 48px !important;
+      box-sizing: border-box !important;
     }
 
     .t28-social {
@@ -200,13 +195,13 @@ export default function Template28({ settings, timeLeft }) {
       <div className="t28-content">
         <div className="t28-top-section">
           {logoUrl && logoUrl !== "null" ? (
-            <img src={logoUrl} alt="Logo" style={{ height: "40px", width: "auto", objectFit: "contain", margin: "0 auto 32px" }} />
+            <img src={logoUrl} alt="Logo" style={{ height: "40px", width: "auto", objectFit: "contain", margin: "0 auto 32px", display: "block" }} />
           ) : (
             <div style={{ marginBottom: "24px" }}>
               <svg style={{ height: "48px", width: "48px", margin: "0 auto" }} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2L3 8V16L12 22L21 16V8L12 2Z" stroke="#FDE047" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M3 8L12 13L21 8" stroke="#FDE047" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M12 22V13" stroke="#FDE047" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12 22V13" stroke="#FDE047" strokeLineWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
           )}
@@ -240,7 +235,6 @@ export default function Template28({ settings, timeLeft }) {
         </div>
 
         <div className="t28-subscription">
-          <p className="t28-subscription-prompt">Get Early Access</p>
           <div className="t28-form">
             <input type="email" placeholder="Enter email" className="t28-input" readOnly />
             <button className="t28-submit">Request Invite</button>

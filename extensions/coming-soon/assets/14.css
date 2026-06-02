@@ -68,16 +68,27 @@
   z-index: 5;
   width: 100%;
   text-align: center;
-  padding: 40px 20px;
+  padding: 30px 20px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* ── Logo ───────────────────────────────────────────────── */
 .template-fourteen-container .t14-logo {
-  padding-bottom: 2.5rem;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding-bottom: 2rem !important;
 }
 .template-fourteen-container .t14-logo img {
-  height: 75px; width: auto;
-  object-fit: contain;
+  height: 60px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  margin: 0 auto !important;
 }
 
 /* ── Countdown ──────────────────────────────────────────── */
@@ -86,19 +97,19 @@
   justify-content: center;
   align-items: flex-end;
   gap: 0;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .template-fourteen-container .t14-clock .time {
   color: var(--t14-gold);
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
   font-weight: 700;
   display: inline-flex;
   flex-direction: row;
   align-items: baseline;
-  padding: 18px;
-  min-width: 120px;
+  padding: 12px;
+  min-width: 90px;
   justify-content: center;
 }
 
@@ -108,70 +119,77 @@
 }
 
 .template-fourteen-container .t14-clock .time span.t14-label {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-family: 'Nunito Sans', sans-serif;
   color: var(--t14-gold);
-  margin-left: 6px;
+  margin-left: 5px;
 }
 
 /* ── Gold Stroke Title ──────────────────────────────────── */
 .template-fourteen-container h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: clamp(4rem, 10vw, 12rem);
-  line-height: 1.05;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
   color: rgba(10, 10, 10, 0.65);
-  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: var(--t14-gold);
   text-shadow: 0 4px 35px rgba(0, 0, 0, 0.8);
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin: 0 0 30px;
+  margin: 0 0 20px !important;
+  text-align: center !important;
 }
 
 /* ── Subscribe Form ─────────────────────────────────────── */
 .template-fourteen-container .t14-subscribe {
   max-width: 420px;
+  width: 100%;
   margin: 0 auto 28px;
   padding: 0;
 }
 
 .template-fourteen-container #mc-form {
-  display: flex;
-  width: 100%;
-  border: 1px solid rgba(255, 232, 183, 0.3);
-  border-radius: 4px;
-  overflow: hidden;
+  display: flex !important;
+  width: 100% !important;
+  border: 1px solid rgba(255, 232, 183, 0.3) !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  height: 52px !important;
+  align-items: center !important;
 }
 
 .template-fourteen-container #mc-form input[type="email"] {
-  flex: 1;
-  height: 5.4rem;
-  font-size: 1.4rem;
-  padding: 1.2rem 20px;
-  background: var(--t14-dark);
-  color: var(--t14-gold);
-  border: none;
-  outline: none;
-  font-family: 'Nunito Sans', sans-serif;
+  flex: 1 !important;
+  height: 100% !important;
+  font-size: 1.1rem !important;
+  padding: 0 20px !important;
+  background: var(--t14-dark) !important;
+  color: var(--t14-gold) !important;
+  border: none !important;
+  outline: none !important;
+  font-family: 'Nunito Sans', sans-serif !important;
+  min-width: 0 !important;
 }
 
 .template-fourteen-container #mc-form input[type="email"]::placeholder {
-  color: rgba(255, 232, 183, 0.45);
+  color: rgba(255, 232, 183, 0.45) !important;
 }
 
 .template-fourteen-container #mc-form input[type="submit"] {
-  background: var(--t14-gold);
-  color: #111;
-  border: none;
-  padding: 0 24px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.3s ease;
+  background: var(--t14-gold) !important;
+  color: #111 !important;
+  border: none !important;
+  padding: 0 30px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 1px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: background 0.3s ease !important;
+  height: 100% !important;
+  flex-shrink: 0 !important;
 }
 
 .template-fourteen-container #mc-form input[type="submit"]:hover {

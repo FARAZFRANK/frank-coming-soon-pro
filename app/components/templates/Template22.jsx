@@ -4,7 +4,7 @@ import { StorefrontSocialLinks } from "../SocialIcons";
 const pad = (n) => String(Math.max(0, n)).padStart(2, "0");
 
 export default function Template22({ settings, timeLeft }) {
-  const { title, description, logoUrl, socialLinks } = settings;
+  const { title, description, socialLinks } = settings;
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -106,16 +106,8 @@ export default function Template22({ settings, timeLeft }) {
         textAlign: "center",
         margin: "1rem auto"
       }}>
-        {logoUrl && (
-          <div style={{ marginBottom: "1.5rem" }}>
-            <img src={logoUrl} alt="Logo" style={{ height: "60px", width: "auto", objectFit: "contain" }} />
-          </div>
-        )}
 
 
-        <p style={{ textTransform: "uppercase", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", color: "#F06292", marginBottom: "0.5rem" }}>
-          Get Ready To
-        </p>
 
         <h1 style={{
           fontFamily: "'Anton', sans-serif",
@@ -148,7 +140,6 @@ export default function Template22({ settings, timeLeft }) {
         </div>
 
         <div style={{ marginBottom: "1.5rem" }}>
-          <p style={{ fontSize: "0.9rem", fontWeight: 700, marginBottom: "0.75rem" }}>Don't miss the party!</p>
           <div style={{ display: "flex", gap: "10px", flexDirection: "row", alignItems: "center" }}>
             <input type="email" placeholder="Enter your email" disabled style={{ flex: 1, background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255, 255, 255, 0.3)", borderRadius: "40px", padding: "10px 15px", color: "#fff", fontSize: "0.75rem", textAlign: "center", outline: "none" }} />
             <button disabled style={{ backgroundImage: "linear-gradient(90deg, #F06292 0%, #FFA726 50%, #FFD600 100%)", border: "none", borderRadius: "40px", padding: "10px 20px", color: "#311B92", fontWeight: 800, fontSize: "0.75rem", textTransform: "uppercase", boxShadow: "0 4px 15px rgba(0,0,0,0.2)", whiteSpace: "nowrap" }}>

@@ -5,15 +5,21 @@
     <main class="t28-main-content">
         <!-- Top Section -->
         <div class="t28-top-section" style="text-align: center;">
-            <!-- Logo -->{% if logo_to_show != blank and logo_to_show != 'null' %}<div style="margin-bottom: 2rem;">
-                <img src="{{ logo_to_show }}" alt="Logo" width="200" height="50" loading="lazy" style="height: 50px; width: auto; margin: 0 auto;">
-            </div>{% else %}<div style="margin-bottom: 1.5rem;">
-                <svg style="height: 60px; width: 60px; margin: 0 auto;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Logo -->
+            {% if s.logoUrl != blank and s.logoUrl != 'null' %}
+            <div style="margin-bottom: 2rem; display: flex; justify-content: center; width: 100%;">
+                <img src="{{ logo_to_show }}" alt="Logo" width="200" height="50" loading="lazy" style="height: 50px; width: auto; display: block; margin: 0 auto; object-fit: contain;">
+            </div>
+            {% else %}
+            <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; width: 100%;">
+                <svg style="height: 60px; width: 60px; margin: 0 auto; display: block;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2L3 8V16L12 22L21 16V8L12 2Z" stroke="#FDE047" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M3 8L12 13L21 8" stroke="#FDE047" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 22V13" stroke="#FDE047" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-            </div>{% endif %}<h1 class="t28-title">{% if s.title == nil %}START YOUR <span class="t28-highlight">JOURNEY</span>{% else %}{% assign title_words = s.title | split: ' ' %}{% if title_words.size > 0 %}{{ title_words[0] }} <span class="t28-highlight">{% for word in title_words offset:1 %}{{ word }} {% endfor %}</span>{% else %}{{ s.title }}{% endif %}{% endif %}</h1>
+            </div>
+            {% endif %}
+            <h1 class="t28-title">{% if s.title == nil %}START YOUR <span class="t28-highlight">JOURNEY</span>{% else %}{% assign title_words = s.title | split: ' ' %}{% if title_words.size > 0 %}{{ title_words[0] }} <span class="t28-highlight">{% for word in title_words offset:1 %}{{ word }} {% endfor %}</span>{% else %}{{ s.title }}{% endif %}{% endif %}</h1>
             <div class="t28-divider"></div>
             <p style="color: #9CA3AF; max-width: 800px; margin: 0 auto 4rem; line-height: 1.8; font-size: 1.5rem;">
                 {% if s.description == nil %}Elevate your life with our upcoming premium fitness platform. We are crafting a specialized experience for dedicated athletes.{% else %}{{ s.description }}{% endif %}
@@ -42,7 +48,6 @@
 
         <!-- Subscription Form -->
         <div class="t28-subscription">
-            <p class="t28-subscription-prompt">Get Early Access & Invite Only Membership</p>
             <form class="t28-form">
                 <input type="email" placeholder="Enter your email" class="t28-input" required>
                 <button type="submit" class="t28-submit">Request Invite</button>

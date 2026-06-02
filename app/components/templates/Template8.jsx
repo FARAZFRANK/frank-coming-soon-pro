@@ -2,7 +2,7 @@ import React from "react";
 import { StorefrontSocialLinks } from "../SocialIcons";
 
 const Template8 = ({ settings, timeLeft }) => {
-  const { title, description, logoUrl, socialLinks } = settings;
+  const { title, description, socialLinks } = settings;
 
   const monoStyles = `
     .template-eight-preview {
@@ -17,13 +17,6 @@ const Template8 = ({ settings, timeLeft }) => {
       font-family: 'Inter', sans-serif;
       padding: 40px;
       text-align: center;
-    }
-
-    .mono-logo {
-      width: 40px;
-      height: auto;
-      margin-bottom: 30px;
-      filter: invert(1);
     }
 
     .mono-h1 {
@@ -139,9 +132,6 @@ const Template8 = ({ settings, timeLeft }) => {
     <div className="template-eight-preview">
       <style>{monoStyles}</style>
 
-      {logoUrl && (
-        <img src={logoUrl} alt="Logo" className="mono-logo" style={{ width: "40px", height: "auto", objectFit: "contain", filter: "invert(1)" }} />
-      )}
       <h1 className="mono-h1">{title === undefined || title === null ? "Coming Soon" : title}</h1>
       <p className="mono-p">{description === undefined || description === null ? "We are currently working hard to create a new and exciting experience for you." : description}</p>
 
@@ -170,8 +160,8 @@ const Template8 = ({ settings, timeLeft }) => {
       </div>
 
       <ul className="mono-social">
-          <StorefrontSocialLinks links={socialLinks} />
-        </ul>
+        <StorefrontSocialLinks links={socialLinks} />
+      </ul>
     </div>
   );
 };

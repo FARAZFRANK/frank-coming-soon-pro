@@ -96,34 +96,42 @@ body {
 }
 
 #mc-form {
-  display: flex;
-  max-width: 380px;
-  width: 100%;
-  margin-bottom: 4rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-  border: 1px solid #eee;
-  border-radius: 4px;
-  overflow: hidden;
+  display: flex !important;
+  max-width: 450px !important;
+  width: 100% !important;
+  margin-bottom: 4rem !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid #eee !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  height: 52px !important;
 }
 
 #mc-form input[type="email"] {
-  flex: 1;
-  padding: 1.6rem 2rem;
-  background: #fff;
-  border: none;
-  color: #13161b;
-  font-size: 1.3rem;
+  flex: 1 !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  padding: 0 2rem !important;
+  background: #fff !important;
+  border: none !important;
+  color: #13161b !important;
+  font-size: 1.3rem !important;
+  outline: none !important;
 }
 
 #mc-form input[type=submit] {
-  padding: 0 2.5rem;
-  background: var(--thm-primary);
-  color: #fff;
-  border: none;
-  font-weight: 800;
-  font-size: 1.3rem;
-  text-transform: uppercase;
-  cursor: pointer;
+  flex-shrink: 0 !important;
+  height: 100% !important;
+  padding: 0 2.5rem !important;
+  background: var(--thm-primary) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 800 !important;
+  font-size: 1.2rem !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  outline: none !important;
+  white-space: nowrap !important;
 }
 
 .home-social {
@@ -189,7 +197,8 @@ body {
 .template-four-container .csmm-msg {
   text-align: left;
   max-width: 380px;
-  margin-top: -3rem; /* pull up because #mc-form has 4rem margin-bottom */
+  margin-top: -3rem;
+  /* pull up because #mc-form has 4rem margin-bottom */
   margin-bottom: 3rem;
 }
 

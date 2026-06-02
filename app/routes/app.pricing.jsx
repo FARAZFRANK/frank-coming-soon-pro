@@ -66,8 +66,11 @@ export default function Pricing() {
   const { isPro, billingError } = useLoaderData();
   const location = useLocation();
   const navigation = useNavigation();
+  const submit = useSubmit();
   const isUpgrading = navigation.state === "loading" && navigation.location.pathname === "/app/upgrade";
-  const isDowngrading = navigation.state === "loading" && navigation.location.pathname === "/app/downgrade";
+  const isDowngrading = 
+    (navigation.state === "submitting" || navigation.state === "loading") && 
+    (navigation.formAction === "/app/downgrade" || navigation.location?.pathname === "/app/downgrade");
   const isLoading = isUpgrading || isDowngrading;
 
   const plans = [
@@ -90,7 +93,7 @@ export default function Pricing() {
       isCurrent: !isPro,
       action: {
         content: isPro ? "Downgrade to Free" : "Current Plan",
-        url: isPro ? `/app/downgrade${location.search}` : null,
+        onAction: isPro ? () => submit({}, { method: "post", action: `/app/downgrade${location.search}` }) : null,
         disabled: !isPro || isLoading,
         loading: isDowngrading,
       },
@@ -200,6 +203,7 @@ export default function Pricing() {
                       variant={plan.highlight ? "primary" : "secondary"}
                       fullWidth
                       url={plan.action.url}
+                      onClick={plan.action.onAction}
                       disabled={plan.action.disabled}
                       loading={plan.action.loading}
                     >

@@ -42,7 +42,7 @@
 
 /* Right side with the content */
 .t25-content-side {
-  padding: 3rem 2rem;
+  padding: 2.5rem 1.5rem !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,6 +50,7 @@
   text-align: center;
   animation: t25-fadeInContent 1.5s 0.3s ease-out forwards;
   opacity: 0;
+  box-sizing: border-box;
 }
 
 @keyframes t25-fadeInContent {
@@ -57,7 +58,6 @@
     opacity: 0;
     transform: translateY(20px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -66,7 +66,7 @@
 
 .t25-inner {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
 }
 
 /* Custom font for titles */
@@ -74,7 +74,8 @@
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   line-height: 1.1;
-  margin-bottom: 2rem;
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  margin-bottom: 1rem !important;
 }
 
 .t25-brand-logo {
@@ -82,55 +83,58 @@
   font-weight: 500;
   letter-spacing: 0.5em;
   text-transform: uppercase;
-  margin-bottom: 3rem;
-  font-size: 1rem;
+  margin-bottom: 1.5rem !important;
+  font-size: 0.95rem;
 }
 
 .t25-logo img {
   width: auto;
+  max-height: 35px !important;
   object-fit: contain;
+  margin-bottom: 1.2rem !important;
 }
 
 .t25-description {
   color: #6b7280;
-  margin-bottom: 3rem;
-  font-size: 1.4rem;
+  margin-bottom: 1.8rem !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
 }
 
 /* Countdown timer styling */
 .t25-countdown {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 4rem;
+  gap: 1rem !important;
+  margin-bottom: 2rem !important;
   text-align: center;
 }
 
 .t25-countdown-number {
   font-family: 'Playfair Display', serif;
   color: #111;
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem) !important;
   line-height: 1;
 }
 
 .t25-countdown-label {
   color: #888;
-  font-size: 1rem;
-  letter-spacing: 0.15em;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-top: 0.5rem;
+  margin-top: 4px;
 }
 
 /* Subscription form styling */
 .t25-subscription {
   width: 100%;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem !important;
 }
 
 .t25-form-prompt {
-  margin-bottom: 1.5rem;
-  font-size: 1.3rem;
+  margin-bottom: 0.8rem !important;
+  font-size: 0.95rem !important;
   font-weight: 500;
   color: #333;
 }
@@ -138,41 +142,46 @@
 .t25-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 12px !important;
 }
 
 .t25-input {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #ccc;
+  background: #fcfcfc !important;
+  border: 1px solid #ddd !important;
   color: #333;
-  padding: 0.75rem 0;
+  padding: 0 15px !important;
   transition: all 0.3s ease;
-  text-align: center;
-  border-radius: 0;
-  font-size: 1.7rem;
+  text-align: left !important;
+  border-radius: 4px !important;
+  font-size: 1rem !important;
+  height: 52px !important;
+  box-sizing: border-box !important;
 }
 
 .t25-input::placeholder {
-  color: #aaa;
+  color: #bbb;
 }
 
 .t25-input:focus {
   outline: none;
-  border-bottom-color: #333;
+  border-color: #111 !important;
+  background: #fff !important;
 }
 
 .t25-submit {
   background-color: #111;
   color: #fff;
   border: 1px solid #111;
-  padding: 1rem 2rem;
+  padding: 0 2rem !important;
   transition: all 0.3s ease;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  font-size: 1.75rem;
+  font-size: 0.85rem !important;
+  height: 52px !important;
+  border-radius: 4px !important;
   cursor: pointer;
+  box-sizing: border-box !important;
 }
 
 .t25-submit:hover {
@@ -182,17 +191,17 @@
 
 .t25-social {
   border-top: 1px solid #eee;
-  padding-top: 2rem;
+  padding-top: 1.2rem !important;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem !important;
   list-style: none;
   padding-left: 0;
 }
 
 .t25-social a {
   color: #999;
-  font-size: 2rem;
+  font-size: 1.3rem !important;
   transition: all 0.3s ease;
 }
 
@@ -203,6 +212,6 @@
 
 @media (max-width: 767px) {
   .t25-content-side {
-    padding: 3rem 1.5rem;
+    padding: 2.5rem 1rem !important;
   }
 }

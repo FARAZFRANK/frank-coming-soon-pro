@@ -26,7 +26,7 @@ const ContentSection = ({ formState, setFormState, isPro, onUpgrade, shop }) => 
             autoComplete="off"
             helpText="The main title shown on your page"
           />
-          {!["template_2", "template_3", "template_13", "template_14", "template_15", "template_16", "template_17", "template_18", "template_19"].includes(formState.templateId) && (
+          {!["template_2", "template_3", "template_13", "template_14", "template_15", "template_16", "template_17", "template_18", "template_19", "template_20"].includes(formState.templateId) && (
             <TextField
               label="Description"
               value={formState.description}
@@ -40,43 +40,45 @@ const ContentSection = ({ formState, setFormState, isPro, onUpgrade, shop }) => 
       </Card>
 
       {/* --- Display Options Section --- */}
-      <Card>
-        <BlockStack gap="400">
-          <InlineStack gap="200" align="start" blockAlign="center">
-            <div className={`${styles.sectionIconContainer} ${styles.displayIcon}`}>
-              <Icon source={LayoutBlockIcon} tone="warning" />
-            </div>
-            <BlockStack gap="0">
-              <InlineStack gap="200" blockAlign="center">
-                <Text as="h2" variant="headingSm">Display Options</Text>
-                {!isPro && <Badge tone="magic">Pro</Badge>}
-              </InlineStack>
-              <Text variant="bodySm" tone="subdued">Control how your page appears</Text>
-            </BlockStack>
-          </InlineStack>
-          <Divider />
-          <Box padding="100">
-            <InlineStack gap="400" align="start" blockAlign="center" wrap={false}>
-              <Checkbox
-                label="Show Theme Header & Navigation"
-                checked={formState.showHeader}
-                onChange={(v) => {
-                  if (!isPro) {
-                    onUpgrade();
-                  } else {
-                    setFormState({ ...formState, showHeader: v });
-                  }
-                }}
-                helpText="When enabled, your store's header and menu will appear above the maintenance overlay"
-              />
-              {formState.showHeader && <Badge tone="success">Active</Badge>}
+      {formState.mode === "MAINTENANCE" && (
+        <Card>
+          <BlockStack gap="400">
+            <InlineStack gap="200" align="start" blockAlign="center">
+              <div className={`${styles.sectionIconContainer} ${styles.displayIcon}`}>
+                <Icon source={LayoutBlockIcon} tone="warning" />
+              </div>
+              <BlockStack gap="0">
+                <InlineStack gap="200" blockAlign="center">
+                  <Text as="h2" variant="headingSm">Display Options</Text>
+                  {!isPro && <Badge tone="magic">Pro</Badge>}
+                </InlineStack>
+                <Text variant="bodySm" tone="subdued">Control how your page appears</Text>
+              </BlockStack>
             </InlineStack>
-          </Box>
-        </BlockStack>
-      </Card>
+            <Divider />
+            <Box padding="100">
+              <InlineStack gap="400" align="start" blockAlign="center" wrap={false}>
+                <Checkbox
+                  label="Show Theme Header & Navigation"
+                  checked={formState.showHeader}
+                  onChange={(v) => {
+                    if (!isPro) {
+                      onUpgrade();
+                    } else {
+                      setFormState({ ...formState, showHeader: v });
+                    }
+                  }}
+                  helpText="When enabled, your store's header and menu will appear above the maintenance overlay"
+                />
+                {formState.showHeader && <Badge tone="success">Active</Badge>}
+              </InlineStack>
+            </Box>
+          </BlockStack>
+        </Card>
+      )}
 
       {/* --- Countdown Section --- */}
-      {formState.mode !== "LIVE" && (
+      {formState.mode !== "LIVE" && formState.templateId !== "template_1" && (
         <Card>
           <BlockStack gap="400">
             <InlineStack gap="200" align="start" blockAlign="center">
@@ -98,14 +100,16 @@ const ContentSection = ({ formState, setFormState, isPro, onUpgrade, shop }) => 
               onChange={(v) => setFormState({ ...formState, countdownDate: v })}
               helpText="When your store will go live"
             />
-            <TextField
-              label="Countdown Label"
-              value={formState.countdownTitle || ""}
-              onChange={(v) => setFormState({ ...formState, countdownTitle: v })}
-              autoComplete="off"
-              placeholder="e.g. Launching In..."
-              helpText="Text shown above the countdown timer"
-            />
+            {!["template_2", "template_5", "template_7", "template_8", "template_9", "template_10", "template_13", "template_14", "template_15", "template_16", "template_17", "template_18", "template_19", "template_20", "template_22", "template_25", "template_26", "template_27", "template_28", "template_29", "template_32"].includes(formState.templateId) && (
+              <TextField
+                label="Countdown Label"
+                value={formState.countdownTitle || ""}
+                onChange={(v) => setFormState({ ...formState, countdownTitle: v })}
+                autoComplete="off"
+                placeholder="e.g. Launching In..."
+                helpText="Text shown above the countdown timer"
+              />
+            )}
           </BlockStack>
         </Card>
       )}

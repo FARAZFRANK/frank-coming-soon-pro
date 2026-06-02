@@ -3,11 +3,17 @@
   <canvas id="particles-canvas" class="t27-canvas"></canvas>
 
   <main class="t27-main-content">
-     <div class="t27-logo">{% if logo_to_show != blank %}<img src="{{ logo_to_show }}" alt="Logo" class="t27-logo-img" width="200" height="100" loading="lazy">{% else %}<svg class="t24-logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+     <div class="t27-logo">
+       {% if s.logoUrl != blank and s.logoUrl != 'null' %}
+         <img src="{{ logo_to_show }}" alt="Logo" class="t27-logo-img" width="200" height="100" loading="lazy" style="display: block; margin: 0 auto;">
+       {% else %}
+         <svg class="t27-logo-svg" style="height: 64px; width: 64px; margin: 0 auto 1.5rem; display: block; color: #10B981;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M2 17L12 22L22 17" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M2 12L12 17L22 12" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>{% endif %}</div>
+         </svg>
+       {% endif %}
+     </div>
 
      <h1 class="t27-title">{% if s.title == nil %}<span class="t24-highlight">Join</span> the Movement{% else %}{% assign title_words = s.title | split: ' ' %}{% if title_words.size > 0 %}<span class="t24-highlight">{{ title_words[0] }}</span>{% for word in title_words offset:1 %} {{ word }}{% endfor %}{% else %}{{ s.title }}{% endif %}{% endif %}</h1>
      <p class="t27-description">{% if s.description == nil %}Empowering the next generation of sustainable technology. We are currently working on something big. Stay tuned!{% else %}{{ s.description }}{% endif %}</p>{% if s.countdownDate != blank %}<div class="t27-countdown" id="countdown">
@@ -28,7 +34,6 @@
           <div class="t27-countdown-label">Secs</div>
         </div>
      </div>{% endif %}<div class="t27-subscription">
-        <p class="t27-form-prompt">Join the movement. Be the first to know.</p>
         <form class="t27-form">
            <input type="email" placeholder="Enter your email address" class="t27-input" required>
            <button type="submit" class="t27-submit">Stay Updated</button>

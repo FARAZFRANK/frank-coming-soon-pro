@@ -2,7 +2,7 @@ import React from "react";
 import { StorefrontSocialLinks } from "../SocialIcons";
 
 const Template10 = ({ settings, timeLeft }) => {
-  const { title, description, logoUrl, socialLinks } = settings;
+  const { title, description, socialLinks } = settings;
 
   const studioStyles = `
     .template-ten-preview {
@@ -27,15 +27,6 @@ const Template10 = ({ settings, timeLeft }) => {
       width: 100%;
       height: 4px;
       background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
-    }
-
-    .studio-logo {
-      width: 55px;
-      margin-bottom: 35px;
-      padding: 10px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
 
     .studio-h1 {
@@ -149,10 +140,6 @@ const Template10 = ({ settings, timeLeft }) => {
       <style>{studioStyles}</style>
       <div className="studio-accent"></div>
 
-      {logoUrl && (
-        <img src={logoUrl} alt="Logo" className="studio-logo" style={{ width: "55px", height: "auto", objectFit: "contain" }} />
-      )}
-      
       <h1 className="studio-h1">{title === undefined || title === null ? "Coming Soon" : title}</h1>
       <p className="studio-p">{description === undefined || description === null ? "We are currently working hard to create a new and exciting experience for you." : description}</p>
 
@@ -181,8 +168,8 @@ const Template10 = ({ settings, timeLeft }) => {
       </div>
 
       <ul className="studio-social">
-          <StorefrontSocialLinks links={socialLinks} />
-        </ul>
+        <StorefrontSocialLinks links={socialLinks} />
+      </ul>
     </div>
   );
 };

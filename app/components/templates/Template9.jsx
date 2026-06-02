@@ -2,7 +2,7 @@ import React from "react";
 import { StorefrontSocialLinks } from "../SocialIcons";
 
 const Template9 = ({ settings, timeLeft }) => {
-  const { title, description, logoUrl, socialLinks } = settings;
+  const { title, description, socialLinks } = settings;
 
   const starStyles = `
     .template-nine-preview {
@@ -44,13 +44,6 @@ const Template9 = ({ settings, timeLeft }) => {
       padding: 20px;
       width: 100%;
       max-width: 800px;
-    }
-
-    .nine-logo {
-      height: 40px;
-      width: auto;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
     }
 
     .nine-h1 {
@@ -183,9 +176,6 @@ const Template9 = ({ settings, timeLeft }) => {
       <style>{starStyles}</style>
 
       <div className="nine-content">
-        {logoUrl && (
-          <img src={logoUrl} alt="Logo" className="nine-logo" style={{ height: "40px", width: "auto", objectFit: "contain" }} />
-        )}
         <h1 className="nine-h1">{title === undefined || title === null ? "Coming Soon" : title}</h1>
         <p className="nine-p">{description === undefined || description === null ? "We are currently working hard to create a new and exciting experience for you." : description}</p>
 

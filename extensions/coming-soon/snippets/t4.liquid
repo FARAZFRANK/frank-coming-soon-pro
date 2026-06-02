@@ -1,6 +1,6 @@
 <div class="template-four-container csmm-main-bg" style="background-image: url('{% if s.bgImageUrl != blank and s.bgImageUrl != 'null' and s.bgImageUrl != '' %}{{ s.bgImageUrl }}{% else %}{{ 'temp-4.png' | asset_url }}{% endif %}')">
   <div class="home-content">
-     <div class="launching-text">Launching In...</div>
+     <div class="launching-text">{% if s.countdownTitle == nil or s.countdownTitle == "" %}Launching In...{% else %}{{ s.countdownTitle }}{% endif %}</div>
      <div class="home-content__counter">
        <div class="home-content__clock">
           <div class="time" id="days">00 <span>D</span></div>

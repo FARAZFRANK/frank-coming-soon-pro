@@ -129,15 +129,6 @@
     text-align: center;
 }
 
-.t28-subscription-prompt {
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #9CA3AF;
-    font-size: 1.2rem;
-}
-
 .t28-form {
     display: flex;
     flex-direction: column;
@@ -151,41 +142,48 @@
 }
 
 .t28-input {
-	background: transparent;
-	border: 1px solid #4B5563;
-	color: #ffffff;
-	transition: all 0.3s ease;
-    padding: 1rem;
-    border-radius: 6px;
-    flex-grow: 1;
-    text-align: center;
+  flex-grow: 1 !important;
+  background: transparent !important;
+  border: 1px solid #4B5563 !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease !important;
+  padding: 0 1.5rem !important;
+  border-radius: 6px !important;
+  text-align: center !important;
+  height: 52px !important;
+  box-sizing: border-box !important;
 }
 
 .t28-input::placeholder {
-	color: #9CA3AF;
+  color: #9CA3AF !important;
 }
 
 .t28-input:focus {
-	outline: none;
-	border-color: #FDE047;
-	background: rgba(253, 224, 71, 0.05);
+  outline: none !important;
+  border-color: #FDE047 !important;
+  background: rgba(253, 224, 71, 0.05) !important;
+  box-shadow: 0 0 10px rgba(253, 224, 71, 0.3) !important;
 }
 
 .t28-submit {
-	background-color: #FDE047;
-	color: #000;
-	border: none;
-	transition: all 0.3s ease;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-    padding: 1rem 2rem;
-    border-radius: 6px;
-    cursor: pointer;
+  background-color: #FDE047 !important;
+  color: #000 !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 0 2rem !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  height: 52px !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
 }
 
 .t28-submit:hover {
-	background-color: #fff;
+  background-color: #fff !important;
+  color: #000 !important;
 }
 
 /* Social Icons */

@@ -4,7 +4,7 @@ import { StorefrontSocialLinks } from "../SocialIcons";
 const pad = (n) => String(Math.max(0, n)).padStart(2, "0");
 
 export default function Template19({ settings, timeLeft }) {
-  const { title, logoUrl, socialLinks } = settings || {};
+  const { title, socialLinks } = settings || {};
   const canvasRef = useRef(null);
   const [score, setScore] = useState(0);
   const [gameActive, setGameActive] = useState(true);
@@ -265,11 +265,6 @@ export default function Template19({ settings, timeLeft }) {
       <div className="t19-overlay-content" style={{ position: "absolute", inset: 0, zIndex: 5, pointerEvents: "none", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "1.5rem 1rem" }}>
         <div className="t19-top" style={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 6, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1.5rem 2.5rem", pointerEvents: "none" }}>
           <div style={{ color: "#fff", fontSize: "0.8rem", fontFamily: "'Press Start 2P', cursive", pointerEvents: "auto" }}>SCORE: {score}</div>
-          {logoUrl && (
-            <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: "1rem" }}>
-              <img src={logoUrl} alt="Logo" style={{ height: "50px", width: "auto", objectFit: "contain" }} />
-            </div>
-          )}
           <div style={{ position: "relative" }}>
             <style>{`
               .t19-social-backend a { color: #fff; display: block; opacity: 0.8; transition: 0.3s; filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5)); }

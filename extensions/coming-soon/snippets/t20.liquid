@@ -1,40 +1,51 @@
-<div class="template-twenty-container">
+<div class="template-twenty-container csmm-main-bg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-  <canvas id="t20-canvas"></canvas>
   
-  <div id="t20-game-msg">
-    <div id="t20-msg-text">PAUSED</div>
-    <div style="font-size: 10px; margin-top: 20px; color: #0ff;">SCORE: <span id="t20-final-score">0</span></div>
-    <div style="font-size: 8px; margin-top: 20px; line-height: 2;">USE ARROW KEYS TO MOVE<br>PRESS 'ENTER' TO START</div>
+  <!-- Canvas Retro Game Box -->
+  <div class="t20-game-wrapper">
+    <canvas id="t20-canvas"></canvas>
+    
+    <div id="t20-game-msg">
+      <div id="t20-msg-text">PAUSED</div>
+      <div style="font-size: 10px; margin-top: 20px; color: #0ff;">SCORE: <span id="t20-final-score">0</span></div>
+      <div style="font-size: 8px; margin-top: 20px; line-height: 2;">USE ARROW KEYS TO MOVE<br>PRESS 'ENTER' TO START</div>
+    </div>
   </div>
 
-  <div class="t20-overlay-content">
-    <div class="t20-topbar">
-      <div class="t20-score-box">XP: <span id="t20-current-score">0</span></div>
-      <ul class="t20-social">
-        {% render 'cs-social', s: s %}
-      </ul>
+  <!-- Countdown, Title & Subscribe below the game box -->
+  <div class="t20-info-content">
+    <div class="t20-clock">
+      <div class="time">
+        <span id="days">00</span><span class="label">DAYS</span>
+      </div>
+      <div class="time">
+        <span id="hours">00</span><span class="label">HOURS</span>
+      </div>
+      <div class="time">
+        <span id="minutes">00</span><span class="label">MINS</span>
+      </div>
+      <div class="time">
+        <span id="seconds">00</span><span class="label">SECS</span>
+      </div>
     </div>
     
-    <div class="t20-center">
-      <div class="t20-clock">
-        <div class="time">
-          <span id="days">00</span><span class="label">DAYS</span>
-        </div>
-        <div class="time">
-          <span id="hours">00</span><span class="label">HOURS</span>
-        </div>
-        <div class="time">
-          <span id="minutes">00</span><span class="label">MINS</span>
-        </div>
-        <div class="time">
-          <span id="seconds">00</span><span class="label">SECS</span>
-        </div>
-      </div>
-      <h1>{% if s.title == blank %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
-    </div>
+    <h1>{% if s.title == blank %}Coming Soon{% else %}{{ s.title }}{% endif %}</h1>
 
-    <div style="height: 100px;"></div>
+    <!-- Retro Neon Subscribe Form -->
+    <div class="t20-subscribe">
+      <form id="mc-form">
+        <input type="email" placeholder="{% if s.inputPlaceholder == blank %}Your Email Address{% else %}{{ s.inputPlaceholder }}{% endif %}" required>
+        <input type="submit" value="{% if s.buttonText == blank %}Subscribe{% else %}{{ s.buttonText }}{% endif %}">
+      </form>
+    </div>
+  </div>
+
+  <!-- Top bar / Score & Social -->
+  <div class="t20-topbar">
+    <div class="t20-score-box">XP: <span id="t20-current-score">0</span></div>
+    <ul class="t20-social">
+      {% render 'cs-social', s: s %}
+    </ul>
   </div>
 
   <script>
@@ -52,8 +63,8 @@
       let snake, food, dx, dy, nextDx, nextDy, score, gameActive, gameSpeed, lastTime;
       
       function resize() {
-        w = canvas.width = Math.floor(Math.min(window.innerWidth * 0.9, 600) / gridSize) * gridSize;
-        h = canvas.height = Math.floor(Math.min(window.innerHeight * 0.5, 400) / gridSize) * gridSize;
+        w = canvas.width = Math.floor(Math.min(window.innerWidth * 0.95, 750) / gridSize) * gridSize;
+        h = canvas.height = Math.floor(Math.min(window.innerHeight * 0.5, 380) / gridSize) * gridSize;
         cols = w / gridSize;
         rows = h / gridSize;
         if (!gameActive) init(); 
@@ -74,7 +85,7 @@
         gameSpeed = 130;
         lastTime = 0;
         currentScoreSpan.innerText = '0';
-        spawnFood(); // Spawn initial food to prevent draw crash
+        spawnFood(); 
         gameMsg.style.display = 'block';
         msgText.innerText = "READY?";
       }
@@ -139,7 +150,6 @@
           const y = segment.y * gridSize + 1;
           const s = gridSize - 2;
           
-          // Simple rectangle for compatibility
           ctx.fillRect(x, y, s, s);
 
           // Eyes for head

@@ -1,7 +1,7 @@
 import { StorefrontSocialLinks } from "../SocialIcons";
 
 export default function Template4({ settings, timeLeft }) {
-  const { title, description, logoUrl, bgImageUrl, socialLinks } = settings;
+  const { title, description, logoUrl, bgImageUrl, socialLinks, countdownTitle } = settings;
 
   const templateFourStyles = `
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
@@ -139,7 +139,9 @@ export default function Template4({ settings, timeLeft }) {
             <img src={logoUrl} alt="Logo" />
           </div>
         )}
-        <div className="launching-text">Launching In...</div>
+        <div className="launching-text">
+          {countdownTitle === undefined || countdownTitle === null || countdownTitle === "" ? "Launching In..." : countdownTitle}
+        </div>
 
         <div className="home-content__counter">
           <div className="home-content__clock">

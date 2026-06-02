@@ -58,13 +58,6 @@ export default function Template29({ settings, timeLeft }) {
       margin-bottom: 8px;
     }
 
-    .t29-tagline {
-      font-size: 18px;
-      font-weight: 300;
-      color: #718096;
-      margin-bottom: 24px;
-    }
-
     .t29-divider {
       height: 2px;
       width: 100px;
@@ -110,37 +103,36 @@ export default function Template29({ settings, timeLeft }) {
       margin-bottom: 32px;
     }
 
-    .t29-subscription-prompt {
-      font-weight: 600;
-      color: #4A5568;
-      margin-bottom: 16px;
-      font-size: 15px;
-    }
-
     .t29-form {
       display: flex;
       gap: 8px;
     }
 
     .t29-input {
-      flex-grow: 1;
-      background: #fff;
-      border: 1px solid #CBD5E0;
-      color: #1A202C;
-      padding: 10px 16px;
-      border-radius: 6px;
-      font-size: 14px;
+      flex-grow: 1 !important;
+      background: #fff !important;
+      border: 1px solid #CBD5E0 !important;
+      color: #1A202C !important;
+      padding: 0 16px !important;
+      border-radius: 6px !important;
+      font-size: 14px !important;
+      height: 48px !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
     }
 
     .t29-submit {
-      background-color: #38A169;
-      color: #fff;
-      border: none;
-      font-weight: 600;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 14px;
-      white-space: nowrap;
+      background-color: #38A169 !important;
+      color: #fff !important;
+      border: none !important;
+      font-weight: 600 !important;
+      padding: 0 24px !important;
+      border-radius: 6px !important;
+      font-size: 14px !important;
+      white-space: nowrap !important;
+      height: 48px !important;
+      box-sizing: border-box !important;
+      cursor: not-allowed !important;
     }
 
     .t29-social {
@@ -170,7 +162,7 @@ export default function Template29({ settings, timeLeft }) {
       <div className="t29-card">
         <div className="t29-top-section">
           {logoUrl && logoUrl !== "null" ? (
-            <img src={logoUrl} alt="Logo" style={{ height: "40px", width: "auto", objectFit: "contain", margin: "0 auto 24px" }} />
+            <img src={logoUrl} alt="Logo" style={{ height: "40px", width: "auto", objectFit: "contain", margin: "0 auto 24px", display: "block" }} />
           ) : (
             <div style={{ marginBottom: "24px" }}>
               <svg style={{ height: "48px", width: "48px", margin: "0 auto" }} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,9 +173,8 @@ export default function Template29({ settings, timeLeft }) {
           )}
 
           <h1 className="t29-title">{title === undefined || title === null ? "Compassionate Care" : title}</h1>
-          <p className="t29-tagline">A new standard of healthcare is coming soon.</p>
           <div className="t29-divider"></div>
-          <p style={{ color: "#718096", marginBottom: "40px", fontSize: "20px", lineHeight: "1.6" }}>
+          <p style={{ color: "#718096", marginBottom: "56px", fontSize: "20px", lineHeight: "1.6" }}>
             {description === undefined || description === null ? "We are committed to providing world-class medical services to our community. Our state-of-the-art facility will be opening its doors soon." : description}
           </p>
         </div>
@@ -208,7 +199,6 @@ export default function Template29({ settings, timeLeft }) {
         </div>
 
         <div className="t29-subscription">
-          <p className="t29-subscription-prompt">Receive updates and opening day information.</p>
           <div className="t29-form">
             <input type="email" placeholder="Enter email" className="t29-input" readOnly />
             <button className="t29-submit">Keep Me Informed</button>

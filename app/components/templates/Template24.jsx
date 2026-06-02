@@ -3,140 +3,272 @@ import { StorefrontSocialLinks } from "../SocialIcons";
 
 const pad = (n) => String(Math.max(0, n)).padStart(2, "0");
 
-const MonitorIcon = () => (
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-  </svg>
-);
-
-const ChatIcon = () => (
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-  </svg>
-);
-
-const UsersIcon = () => (
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-  </svg>
-);
-
 const SmileyIcon = () => (
-  <svg style={{ height: "52px", width: "52px", margin: "0 auto 0.5rem" }} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="10" stroke="#007AFF" strokeWidth="1.5" />
-    <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#007AFF" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M9 9.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5c0 .829-.672 1.5-1.5 1.5S9 10.329 9 9.5z" fill="#007AFF" />
-    <path d="M13.5 9.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5z" fill="#007AFF" />
-  </svg>
+  <div style={{
+    width: "70px",
+    height: "70px",
+    margin: "0 auto 1.5rem",
+    background: "#EBF4FF",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }}>
+    <svg style={{ height: "40px", width: "40px" }} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" stroke="#007AFF" strokeWidth="1.5" />
+      <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#007AFF" strokeWidth="1.5" strokeLinecap="round" />
+      <circle cx="9.5" cy="9.5" r="1.5" fill="#007AFF" />
+      <circle cx="14.5" cy="9.5" r="1.5" fill="#007AFF" />
+    </svg>
+  </div>
 );
 
 export default function Template24({ settings, timeLeft }) {
-  const { title, description, logoUrl, socialLinks } = settings;
+  const { title, description, logoUrl, countdownTitle, socialLinks } = settings;
+
+  const clockItems = [
+    { label: "Days", v: timeLeft.days },
+    { label: "Hours", v: timeLeft.hours },
+    { label: "Minutes", v: timeLeft.minutes },
+    { label: "Seconds", v: timeLeft.seconds }
+  ];
 
   const t24Styles = `
-    .t24-social { list-style: none; display: flex; justify-content: center; gap: 1rem; padding: 0; margin: 1rem 0 0; }
-    .t24-social li { list-style: none; }
-    .t24-social li a { color: #007AFF !important; display: flex; }
-    .t24-social li a svg { width: 20px; height: 20px; }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+    
+    .t24-wrap {
+      font-family: 'Roboto', sans-serif;
+      background-color: #F4F7FC;
+      position: relative;
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 40px 20px;
+    }
+
+    .t24-bg-circle {
+      position: absolute;
+      background-color: rgba(0, 122, 255, 0.08);
+      border-radius: 50%;
+    }
+
+    .t24-main {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .t24-logo-container {
+      margin-bottom: 1.2rem;
+    }
+
+    .t24-logo-img {
+      height: 46px;
+      width: auto;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    .t24-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: #1a202c !important;
+      line-height: 1.25;
+    }
+
+    .t24-highlight {
+      color: #007AFF !important;
+    }
+
+    .t24-desc {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #4b5563;
+      max-width: 600px;
+      margin: 0 auto 1.8rem auto;
+      line-height: 1.6;
+    }
+
+    .t24-countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .t24-countdown-box {
+      background: #ffffff;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 12px 6px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    .t24-countdown-number {
+      font-family: 'Poppins', sans-serif;
+      color: #007AFF;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .t24-countdown-label {
+      color: #4A5568;
+      font-weight: 500;
+      font-size: 0.65rem;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .t24-subscription {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .t24-form-prompt {
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+      color: #2D3748;
+      font-weight: 600;
+    }
+
+    .t24-form {
+      display: flex;
+      gap: 8px;
+      height: 48px;
+      align-items: center;
+    }
+
+    .t24-input {
+      flex: 1;
+      background: #ffffff;
+      border: 1px solid #CBD5E0;
+      color: #2D3748;
+      padding: 0 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      height: 100%;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .t24-submit {
+      background-color: #007AFF;
+      color: #fff;
+      border: none;
+      padding: 0 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: not-allowed;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      height: 100%;
+    }
+
+    .t24-social {
+      list-style: none;
+      display: flex;
+      gap: 12px;
+      padding: 0;
+      margin: 2rem 0 0 0;
+    }
+
+    .t24-social li {
+      list-style: none;
+    }
+
+    .t24-social li a {
+      color: #007AFF !important;
+      background: #fff;
+      border: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .t24-social li a svg {
+      width: 15px;
+      height: 15px;
+    }
   `;
 
   return (
-    <div style={{
-      fontFamily: "'Roboto', sans-serif",
-      backgroundColor: "#F4F7FC",
-      position: "relative",
-      overflow: "hidden",
-      height: "100%",
-      width: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
-    }}>
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <div className="t24-wrap">
       <style>{t24Styles}</style>
 
-      {/* Animated Circles */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
-        {[
-          { w: 100, t: "10%", l: "5%" },
-          { w: 60, t: "20%", l: "80%" },
-          { w: 30, t: "70%", l: "15%" },
-          { w: 80, t: "80%", l: "90%" },
-          { w: 40, t: "50%", l: "50%" }
-        ].map((s, i) => (
-          <div key={i} style={{
-            position: "absolute",
-            width: s.w, height: s.w,
-            top: s.t, left: s.l,
-            backgroundColor: "rgba(0, 122, 255, 0.08)",
-            borderRadius: "50%"
-          }} />
-        ))}
-      </div>
+      {/* Floating Background Circles to mimic t24-shape */}
+      <div className="t24-bg-circle" style={{ width: "120px", height: "120px", top: "10%", left: "5%" }} />
+      <div className="t24-bg-circle" style={{ width: "80px", height: "80px", top: "20%", right: "8%" }} />
+      <div className="t24-bg-circle" style={{ width: "50px", height: "50px", bottom: "15%", left: "10%" }} />
+      <div className="t24-bg-circle" style={{ width: "100px", height: "100px", bottom: "10%", right: "5%" }} />
 
-      <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "1.2rem", maxWidth: "580px", width: "100%" }}>
-
-        {/* Top Section */}
-        <div className="t24-top-section" style={{ marginBottom: "1.2rem" }}>
+      <main className="t24-main">
+        {/* Logo Section */}
+        <div className="t24-logo-container">
           {logoUrl && logoUrl !== "null" && logoUrl !== "" ? (
-            <img src={logoUrl} alt="Logo" style={{ height: "32px", width: "auto", objectFit: "contain", margin: "0 auto 0.8rem", display: "block" }} />
+            <img src={logoUrl} alt="Logo" className="t24-logo-img" />
           ) : (
             <SmileyIcon />
           )}
-          <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: "1.6rem", fontWeight: 700, color: "#1a202c", margin: "0 0 0.4rem" }}>
-            <span style={{ color: "#007AFF" }}>{title === undefined || title === null ? "Coming Soon" : title}</span>
-          </h1>
-          <p style={{ fontSize: "0.75rem", color: "#4a5568", margin: 0, lineHeight: 1.6 }}>
-            {description === undefined || description === null ? "Join our community of over 50,000 students learning from industry experts." : description}
+        </div>
+
+        {/* Title */}
+        <h1 className="t24-title">
+          <span className="t24-highlight">
+            {title === undefined || title === null ? "Level Up Your Skills" : title}
+          </span>
+        </h1>
+
+        {/* Description */}
+        <p className="t24-desc">
+          {description === undefined || description === null ? "Our new online learning platform is coming soon. Sign up for early access and exclusive discounts." : description}
+        </p>
+
+        {/* Countdown Grid */}
+        <div className="t24-countdown">
+          {clockItems.map((item, idx) => (
+            <div key={idx} className="t24-countdown-box">
+              <div className="t24-countdown-number">{pad(item.v)}</div>
+              <div className="t24-countdown-label">{item.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Subscription Form */}
+        <div className="t24-subscription">
+          <p className="t24-form-prompt">
+            {countdownTitle === undefined || countdownTitle === null || countdownTitle === "" ? "Get notified when we launch!" : countdownTitle}
           </p>
-        </div>
-
-        {/* Countdown */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.6rem", marginBottom: "1.2rem" }}>
-          {[
-            { l: "Days", v: timeLeft.days },
-            { l: "Hours", v: timeLeft.hours },
-            { l: "Minutes", v: timeLeft.minutes },
-            { l: "Seconds", v: timeLeft.seconds }
-          ].map((item, i) => (
-            <div key={i} style={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: "8px", padding: "0.5rem 0.3rem", boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}>
-              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "1.3rem", fontWeight: 700, color: "#007AFF" }}>{pad(item.v)}</div>
-              <div style={{ fontSize: "0.55rem", color: "#4A5568", fontWeight: 500 }}>{item.l}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Features */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.8rem", marginBottom: "1.2rem" }}>
-          {[
-            { t: "Expert-Led", d: "Learn from industry pros.", i: <MonitorIcon /> },
-            { t: "Interactive", d: "Engage with hands-on labs.", i: <ChatIcon /> },
-            { t: "Community", d: "Connect with 50k+ peers.", i: <UsersIcon /> }
-          ].map((f, i) => (
-            <div key={i} style={{ background: "#fff", borderRadius: "8px", padding: "0.8rem 0.5rem", border: "1px solid #E2E8F0", textAlign: "center" }}>
-              <div style={{ backgroundColor: "#EBF4FF", color: "#007AFF", borderRadius: "50%", padding: "0.4rem", display: "inline-flex", marginBottom: "0.4rem", width: "30px", height: "30px" }}>
-                {f.i}
-              </div>
-              <h3 style={{ fontSize: "0.65rem", fontWeight: 700, margin: "0 0 0.2rem" }}>{f.t}</h3>
-              <p style={{ fontSize: "0.55rem", color: "#4a5568", margin: 0 }}>{f.d}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Subscription */}
-        <div style={{ maxWidth: "360px", margin: "0 auto" }}>
-          <p style={{ marginBottom: "0.5rem", fontSize: "0.72rem", color: "#2d3748", fontWeight: 600 }}>Get notified when we launch!</p>
-          <div style={{ display: "flex", gap: "0.5rem" }}>
-            <input type="email" placeholder="Email address" disabled style={{ flex: 1, padding: "0.55rem 0.8rem", borderRadius: "4px", border: "1px solid #cbd5e0", fontSize: "0.65rem" }} />
-            <button disabled style={{ background: "#007AFF", color: "#fff", border: "none", padding: "0.55rem 1rem", borderRadius: "4px", fontWeight: 600, fontSize: "0.65rem", whiteSpace: "nowrap" }}>Notify Me</button>
+          <div className="t24-form">
+            <input type="email" placeholder="Enter your email address" disabled className="t24-input" />
+            <button disabled className="t24-submit">Notify Me</button>
           </div>
         </div>
 
-        {/* Social Icons */}
+        {/* Social Links */}
         <ul className="t24-social">
-          <StorefrontSocialLinks links={socialLinks} size={20} />
+          <StorefrontSocialLinks links={socialLinks} size={15} />
         </ul>
-      </div>
+      </main>
     </div>
   );
 }

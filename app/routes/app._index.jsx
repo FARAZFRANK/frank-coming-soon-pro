@@ -48,6 +48,18 @@ import NewsletterSection from "../components/dashboard/NewsletterSection";
 import { getPlatformColor, getPlatformIcon } from "../components/socialMediaUtils.jsx";
 import TemplateViewer from "../components/dashboard/TemplateViewer";
 
+const get7DaysAheadDate = () => {
+  const date = new Date();
+  date.setDate(date.getDate() + 7);
+  const pad = (num) => String(num).padStart(2, '0');
+  const yyyy = date.getFullYear();
+  const mm = pad(date.getMonth() + 1);
+  const dd = pad(date.getDate());
+  const hh = pad(date.getHours());
+  const min = pad(date.getMinutes());
+  return `${yyyy}-${mm}-${dd}T${hh}:${min}`;
+};
+
 export const loader = async ({ request }) => {
   const { admin, session, billing } = await authenticate.admin(request);
   const shop = session.shop;
@@ -146,8 +158,16 @@ export const loader = async ({ request }) => {
         socialLinks: JSON.stringify({ instagram: "@", facebook: "@", twitter: "@" }),
         showHeader: false,
         newsletterProvider: "NONE",
+        countdownDate: get7DaysAheadDate(),
       },
     });
+  } else {
+    // If the saved date is empty, invalid, or already in the past/expired compared to the current date,
+    // dynamically default it to current date + 7 days so it is always active and fresh.
+    const isPastOrEmpty = !settings.countdownDate || new Date(settings.countdownDate) <= new Date();
+    if (isPastOrEmpty) {
+      settings.countdownDate = get7DaysAheadDate();
+    }
   }
 
   // NON-CRITICAL — these stream in via defer (user sees skeleton while loading)
@@ -410,7 +430,7 @@ export const action = async ({ request }) => {
       logoUrl: "",
       bgImageUrl: "",
       videoUrl: "",
-      countdownDate: "",
+      countdownDate: get7DaysAheadDate(),
       maintenanceScope: "ALL",
       selectedResources: "[]",
       socialLinks: JSON.stringify({ instagram: "@", facebook: "@", twitter: "@" }),
@@ -631,6 +651,7 @@ export default function AppIndex() {
       ...initialSettings,
       socialLinks,
       selectedResources,
+      countdownDate: initialSettings.countdownDate || get7DaysAheadDate(),
       logoUrl: initialSettings.logoUrl || "",
       showHeader: initialSettings.showHeader || false,
       videoUrl: initialSettings.videoUrl || "",
@@ -751,6 +772,7 @@ export default function AppIndex() {
           ...actionData.settings,
           socialLinks,
           selectedResources,
+          countdownDate: actionData.settings.countdownDate || get7DaysAheadDate(),
           logoUrl: actionData.settings.logoUrl || "",
           showHeader: actionData.settings.showHeader || false,
           videoUrl: actionData.settings.videoUrl || "",
@@ -785,6 +807,7 @@ export default function AppIndex() {
       ...initialSettings,
       socialLinks: JSON.parse(initialSettings.socialLinks || "{}"),
       selectedResources: JSON.parse(initialSettings.selectedResources || "[]"),
+      countdownDate: initialSettings.countdownDate || get7DaysAheadDate(),
       logoUrl: initialSettings.logoUrl || "",
       showHeader: initialSettings.showHeader || false,
       videoUrl: initialSettings.videoUrl || "",
@@ -1094,7 +1117,11 @@ export default function AppIndex() {
                               <Text as="h2" variant="headingSm">Template Design</Text>
                               <Badge>{templates.length} templates</Badge>
                             </InlineStack>
-                            <Text variant="bodySm" tone="subdued">Choose a design for your page. Templates 1, 4, 6, 10, and 15 (FREE)</Text>
+                            <Text variant="bodySm" tone="subdued">
+                              {isPro 
+                                ? "Choose a design for your page." 
+                                : "Choose a design for your page. Templates 1, 4, 6, 10, and 15 (FREE)"}
+                            </Text>
                           </BlockStack>
                         </InlineStack>
                         <Divider />

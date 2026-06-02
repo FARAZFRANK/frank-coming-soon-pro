@@ -4,7 +4,7 @@ import { StorefrontSocialLinks } from "../SocialIcons";
 const pad = (n) => String(Math.max(0, n)).padStart(2, "0");
 
 export default function Template23({ settings, timeLeft }) {
-  const { title, description, logoUrl, socialLinks, bgImageUrl } = settings;
+  const { title, description, countdownTitle, logoUrl, socialLinks, bgImageUrl } = settings;
 
   const defaultBg = "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop";
 
@@ -20,7 +20,7 @@ export default function Template23({ settings, timeLeft }) {
       overflow: "hidden"
     }}>
       <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet" />
-      
+
       {/* Left Image Side */}
       <div style={{
         flex: "0 0 45%",
@@ -57,12 +57,12 @@ export default function Template23({ settings, timeLeft }) {
             </div>
           ) : null}
 
-          <h1 style={{ 
-            fontFamily: "'Oswald', sans-serif", 
-            fontSize: "2.8rem", 
+          <h1 style={{
+            fontFamily: "'Oswald', sans-serif",
+            fontSize: "2.8rem",
             fontWeight: 700,
-            textTransform: "uppercase", 
-            lineHeight: "1.1", 
+            textTransform: "uppercase",
+            lineHeight: "1.1",
             marginBottom: "1rem",
             color: "#FBBF24"
           }}>
@@ -76,8 +76,8 @@ export default function Template23({ settings, timeLeft }) {
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "15px", marginBottom: "2rem" }}>
             {[
-              { v: timeLeft.days,    l: "Days" },
-              { v: timeLeft.hours,   l: "Hours" },
+              { v: timeLeft.days, l: "Days" },
+              { v: timeLeft.hours, l: "Hours" },
               { v: timeLeft.minutes, l: "Mins" },
               { v: timeLeft.seconds, l: "Secs" }
             ].map((i, idx) => (
@@ -89,7 +89,7 @@ export default function Template23({ settings, timeLeft }) {
           </div>
 
           <div style={{ marginBottom: "1.5rem" }}>
-            <p style={{ fontSize: "0.85rem", fontWeight: 700, color: "#e5e7eb", marginBottom: "0.8rem" }}>Get construction updates and launch news.</p>
+            <p style={{ fontSize: "0.85rem", fontWeight: 700, color: "#e5e7eb", marginBottom: "0.8rem" }}>{countdownTitle === undefined || countdownTitle === null || countdownTitle === "" ? "Get construction updates and launch news." : countdownTitle}</p>
             <div style={{ display: "flex", gap: "10px" }}>
               <input type="email" placeholder="Email address" disabled style={{ flex: 1, background: "rgba(255,255,255,0.05)", border: "1px solid #374151", borderRadius: "4px", padding: "10px 15px", color: "#fff", fontSize: "0.85rem" }} />
               <button disabled style={{ backgroundColor: "#FBBF24", border: "none", borderRadius: "4px", padding: "10px 20px", color: "#111827", fontWeight: 700, fontSize: "0.8rem", textTransform: "uppercase" }}>

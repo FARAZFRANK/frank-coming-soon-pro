@@ -16,19 +16,19 @@
 }
 
 .template-eight-container .home-logo img {
-  height: 60px;
+  height: 50px;
   width: auto;
   object-fit: contain;
-  margin-bottom: 60px;
+  margin-bottom: 25px;
   filter: invert(1);
 }
 
 .template-eight-container h1 {
-  font-size: clamp(3rem, 10vw, 8rem);
+  font-size: clamp(2rem, 5vw, 4.5rem);
   font-weight: 200;
   text-transform: uppercase;
-  letter-spacing: clamp(10px, 2vw, 30px);
-  margin-bottom: 40px;
+  letter-spacing: clamp(6px, 1.5vw, 18px);
+  margin-bottom: 20px;
   line-height: 1.1;
   color: #ffffff;
 }
@@ -48,48 +48,48 @@
 }
 
 .template-eight-container .home-content__text p {
-  font-size: clamp(0.9rem, 1.5vw, 1.4rem);
-  max-width: 800px;
-  line-height: 2;
-  letter-spacing: 5px;
+  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+  max-width: 700px;
+  line-height: 1.6;
+  letter-spacing: 3px;
   text-transform: uppercase;
   opacity: 0.5;
-  margin: 0 auto 80px;
+  margin: 0 auto 40px;
 }
 
 .template-eight-container .home-content__clock {
   display: flex;
   justify-content: center;
-  gap: clamp(20px, 5vw, 80px);
-  margin: 0 auto 100px auto;
+  gap: clamp(15px, 4vw, 50px);
+  margin: 0 auto 45px auto;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 40px 0;
+  padding: 20px 0;
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
 }
 
 .template-eight-container .time {
-  min-width: 120px;
+  min-width: 90px;
 }
 
 .template-eight-container .time-val {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 300;
   display: block;
   color: #ffffff;
 }
 
 .template-eight-container .time-label {
-  font-size: 0.8rem;
-  letter-spacing: 3px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
   opacity: 0.3;
 }
 
 .template-eight-container .home-content__subscribe {
   width: 100%;
-  max-width: 500px;
+  max-width: 420px;
   margin: 0 auto;
 }
 
@@ -105,10 +105,10 @@
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  padding: 20px 0;
-  font-size: 1.3rem;
+  padding: 12px 0;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   outline: none;
   transition: border-color 0.4s ease;
 }
@@ -124,11 +124,11 @@
   color: #ffffff;
   border: none;
   font-weight: 900;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
-  padding: 10px;
+  padding: 8px;
   transition: opacity 0.3s ease;
 }
 
@@ -140,15 +140,15 @@
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 40px;
-  margin-top: 100px;
+  gap: 30px;
+  margin-top: 50px;
   padding: 0;
 }
 
 .template-eight-container .home-social a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   opacity: 0.4;
   transition: opacity 0.3s ease;
   display: flex;

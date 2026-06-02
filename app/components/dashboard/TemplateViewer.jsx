@@ -149,7 +149,7 @@ export default function TemplateViewer({ settings }) {
           `}</style>
         )}
         <div id="csmm-preview-container" style={{ flex: 1, display: "flex", flexDirection: "column", height: "100%" }}>
-          {settings.showHeader && (
+          {settings.mode === "MAINTENANCE" && settings.showHeader && (
             <div style={{
               width: "100%",
               height: "80px",

@@ -69,48 +69,65 @@
   margin-bottom: 1.5rem;
 }
 
+.t21-logo {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 auto 1.5rem auto !important;
+}
+
+.t21-logo a {
+  display: inline-block !important;
+}
+
 .t21-logo img {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-  margin-bottom: 1.5rem;
+  height: 50px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  margin: 0 auto !important;
 }
 
 .t21-content h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 600;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: #3D3232;
 }
 
 .t21-content p {
   line-height: 1.8;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   max-width: 450px;
   margin-left: auto;
   margin-right: auto;
   color: #6d5b5b;
 }
 
+/* Override Liquid hardcoded inline styles */
+.t21-content > div[style*="margin-bottom"] {
+  margin-bottom: 2rem !important;
+}
+
 .t21-countdown-container {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .t21-countdown-label {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #968484;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .t21-countdown {
   display: flex;
   justify-content: center;
-  gap: 3rem;
-  margin-bottom: 3rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: 2rem;
 }
 
 .t21-countdown-item {
@@ -121,7 +138,7 @@
 
 .t21-countdown-item .number {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 6rem;
+  font-size: clamp(2.5rem, 6vw, 4.2rem) !important;
   font-weight: 700;
   color: #3D3232;
   line-height: 1;
@@ -137,46 +154,61 @@
 
 .t21-form-msg {
   font-weight: 300;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .t21-form {
-  display: flex;
-  gap: 10px;
-  max-width: 450px;
-  margin: 0 auto 3rem;
+  display: flex !important;
+  gap: 12px !important;
+  max-width: 460px !important;
+  width: 100% !important;
+  margin: 0 auto 2.5rem auto !important;
+  height: 52px !important;
+  align-items: center !important;
 }
 
 .t21-input {
-  flex: 1;
-  background: transparent;
-  border: 1px solid #DCD0D0;
-  padding: 12px 25px;
-  border-radius: 99px;
-  outline: none;
-  font-family: 'Lato', sans-serif;
-  text-align: center;
-  transition: border-color 0.3s;
+  flex: 1 !important;
+  background: #fff !important;
+  border: 1px solid #DCD0D0 !important;
+  padding: 0 25px !important;
+  border-radius: 99px !important;
+  outline: none !important;
+  font-family: 'Lato', sans-serif !important;
+  font-size: 1.05rem !important;
+  height: 100% !important;
+  text-align: left !important;
+  transition: border-color 0.3s !important;
+  min-width: 0 !important;
+  color: #5C4B4B !important;
 }
 
 .t21-input:focus {
-  border-color: #B88A8A;
+  border-color: #B88A8A !important;
+}
+
+.t21-input::placeholder {
+  color: #a49393 !important;
 }
 
 .t21-submit {
-  background: #B88A8A;
-  color: white;
-  border: 1px solid #B88A8A;
-  padding: 12px 35px;
-  border-radius: 99px;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: background 0.3s;
+  background: #B88A8A !important;
+  color: white !important;
+  border: 1px solid #B88A8A !important;
+  padding: 0 35px !important;
+  border-radius: 99px !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  transition: background 0.3s !important;
+  height: 100% !important;
+  flex-shrink: 0 !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
 }
 
 .t21-submit:hover {
-  background: #A17676;
+  background: #A17676 !important;
 }
 
 .t21-social {
