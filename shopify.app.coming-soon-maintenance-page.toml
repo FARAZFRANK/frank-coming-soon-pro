@@ -2,7 +2,7 @@
 
 client_id = "0955e12f5de833db49e2a6d2fd067a9e"
 name = "Coming Soon Maintenance Page"
-application_url = "https://coming-soon-maintenance-page.fly.dev"
+application_url = "https://coming-soon-maintenance-mode.wpfrank.com/"
 embedded = true
 handle = "coming-soon-maintenance-page"
 
@@ -33,10 +33,10 @@ api_version = "2025-01"
 scopes = "read_content,read_files,read_themes,write_content,write_files,write_products"
 
 [auth]
-redirect_urls = [ "https://coming-soon-maintenance-page.fly.dev/auth/callback" ]
+redirect_urls = [ "https://coming-soon-maintenance-mode.wpfrank.com/auth/callback" ]
 
 [app_proxy]
-url = "https://coming-soon-maintenance-page.fly.dev"
+url = "https://coming-soon-maintenance-mode.wpfrank.com/"
 subpath = "cs-api"
 prefix = "apps"
 
