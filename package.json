@@ -2,7 +2,7 @@
   "name": "coming-soon-maintenance-page",
   "private": true,
   "scripts": {
-    "build": "remix vite:build",
+    "build": "npx prisma generate && npx prisma db push --accept-data-loss && remix vite:build",
     "dev": "cross-env NODE_OPTIONS=\"--dns-result-order=ipv4first\" shopify app dev",
     "config:link": "shopify app config link",
     "generate": "shopify app generate",
