@@ -12,40 +12,53 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const buildPath = path.resolve(__dirname, 'build', 'server', 'index.js');
 
-// Import the server build
-const build = await import(pathToFileURL(buildPath).href);
+async function startServer() {
+  try {
+    console.log("Starting Remix server init sequence...");
+    console.log("Build path resolved to:", buildPath);
 
-installGlobals({
-  nativeFetch: build.future?.v3_singleFetch
-});
+    // Import the server build
+    const build = await import(pathToFileURL(buildPath).href);
 
-const app = express();
-app.disable('x-powered-by');
-app.use(compression());
+    installGlobals({
+      nativeFetch: build.future?.v3_singleFetch
+    });
 
-// Serve build assets from public/build
-app.use(
-  build.publicPath || '/build/',
-  express.static(build.assetsBuildDirectory || 'public/build', {
-    immutable: true,
-    maxAge: '1y'
-  })
-);
+    const app = express();
+    app.disable('x-powered-by');
+    app.use(compression());
 
-// Serve static assets from public/
-app.use(express.static('public', { maxAge: '1h' }));
+    // Serve build assets from public/build
+    app.use(
+      build.publicPath || '/build/',
+      express.static(build.assetsBuildDirectory || 'public/build', {
+        immutable: true,
+        maxAge: '1y'
+      })
+    );
 
-app.use(morgan('tiny'));
+    // Serve static assets from public/
+    app.use(express.static('public', { maxAge: '1h' }));
 
-app.all(
-  '*',
-  createRequestHandler({
-    build,
-    mode: process.env.NODE_ENV
-  })
-);
+    app.use(morgan('tiny'));
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Express server listening on port ${port}`);
-});
+    app.all(
+      '*',
+      createRequestHandler({
+        build,
+        mode: process.env.NODE_ENV
+      })
+    );
+
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+      console.log(`Express server listening on port ${port}`);
+    });
+  } catch (error) {
+    console.error("❌ CRITICAL ERROR DURING SERVER STARTUP:");
+    console.error(error.stack || error);
+    process.exit(1);
+  }
+}
+
+startServer();
