@@ -1,22 +1,51 @@
-import { spawn } from 'child_process';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
+import express from 'express';
+import compression from 'compression';
+import morgan from 'morgan';
+import { createRequestHandler } from '@remix-run/express';
+import { installGlobals } from '@remix-run/node';
+
+// Set production environment by default
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const binPath = path.resolve(__dirname, 'node_modules', '@remix-run/serve', 'dist', 'cli.js');
+const buildPath = path.resolve(__dirname, 'build', 'server', 'index.js');
 
-const port = process.env.PORT || 3000;
+// Import the server build
+const build = await import(pathToFileURL(buildPath).href);
 
-console.log(`Starting Remix server on port ${port}...`);
-
-const child = spawn('node', [binPath, './build/server/index.js'], {
-  stdio: 'inherit',
-  env: {
-    ...process.env,
-    PORT: port
-  }
+installGlobals({
+  nativeFetch: build.future?.v3_singleFetch
 });
 
-child.on('close', (code) => {
-  process.exit(code);
+const app = express();
+app.disable('x-powered-by');
+app.use(compression());
+
+// Serve build assets from public/build
+app.use(
+  build.publicPath || '/build/',
+  express.static(build.assetsBuildDirectory || 'public/build', {
+    immutable: true,
+    maxAge: '1y'
+  })
+);
+
+// Serve static assets from public/
+app.use(express.static('public', { maxAge: '1h' }));
+
+app.use(morgan('tiny'));
+
+app.all(
+  '*',
+  createRequestHandler({
+    build,
+    mode: process.env.NODE_ENV
+  })
+);
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Express server listening on port ${port}`);
 });
