@@ -25,6 +25,7 @@ async function startServer() {
     });
 
     const app = express();
+    app.set('trust proxy', true);
     app.disable('x-powered-by');
     app.use(compression());
 
